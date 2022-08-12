@@ -97,7 +97,6 @@ const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
               validationSchema={signinSchema}>
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
-                  {/* <FormikCheckerComponent checkFormik={formik} countryData={CountryOptions} specialist={specialistData} schemaInitial={initial} patientAdder={false} /> */}
                   <div>
                     <Grid container>
                       <Grid item xs={12}>

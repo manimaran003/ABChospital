@@ -30,7 +30,7 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     doctorImage: '',
     _id: ''
   });
-  const [show, setShow] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(true);
   const [hideSidebar, sethideBar] = useState<boolean>(true);
   const editModal = (data: EditType) => {
     console.log('data', data);
