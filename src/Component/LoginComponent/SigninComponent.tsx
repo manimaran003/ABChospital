@@ -35,8 +35,7 @@ const SigninComponent: React.FC = () => {
           email: ''
         }}
         onSubmit={(values) => handleLoginSubmit(values)}
-        validationSchema={signinSchema}
-      >
+        validationSchema={signinSchema}>
         {(formik) => (
           <Form onSubmit={formik.handleSubmit}>
             <div className="container">

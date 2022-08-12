@@ -170,8 +170,7 @@ const CustomPatientEditModal: React.FC<{ id: string }> = ({ id }) => {
             <button
               className="btn btn-secondary"
               data-bs-dismiss={`${checkError ? 'modal' : ''}`}
-              aria-label="Close"
-            >
+              aria-label="Close">
               save
             </button>
           </div>
@@ -212,8 +211,7 @@ const CustomPatientEditModal: React.FC<{ id: string }> = ({ id }) => {
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
       data-bs-backdrop="static"
-      data-bs-keyboard="false"
-    >
+      data-bs-keyboard="false">
       <div className="modal-dialog modal-md modal-dialog-scrollable">
         <div className="modal-content">
           <div className="modal-header">

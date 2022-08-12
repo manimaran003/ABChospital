@@ -34,8 +34,7 @@ const CustomPatientDelete: React.FC<{ open: boolean; close: () => void; edit: st
         open={open}
         onClose={close}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box sx={style}>
           <div className="d-flex justify-content-center mb-3">
             <AiOutlineExclamationCircle className="delete--img" />

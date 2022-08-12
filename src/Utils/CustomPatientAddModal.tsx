@@ -77,8 +77,7 @@ const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
             <Formik
               initialValues={initial}
               onSubmit={(data) => handleSubmit(data)}
-              validationSchema={signinSchema}
-            >
+              validationSchema={signinSchema}>
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
                   <div>
@@ -214,8 +213,7 @@ const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
                       className="btn btn-secondary"
                       type="submit"
                       data-bs-dismiss={`${checkError ? 'modal' : ''}`}
-                      aria-label="Close"
-                    >
+                      aria-label="Close">
                       save
                     </button>
                   </div>

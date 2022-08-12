@@ -18,7 +18,6 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     width: '195px',
     padding: '10px 12px',
     transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       '-apple-system',
       'BlinkMacSystemFont',
@@ -55,8 +54,7 @@ const InputComponent: React.FC<any> = (props) => {
         <InputLabel
           shrink
           htmlFor="bootstrap-input"
-          sx={{ fontSize: '1.3rem', fontWeight: 'bolder' }}
-        >
+          sx={{ fontSize: '1.3rem', fontWeight: 'bolder' }}>
           {label}
         </InputLabel>
         <BootstrapInput

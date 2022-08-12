@@ -72,8 +72,7 @@ const SelectComponent: React.FC<any> = (props) => {
       <InputLabel
         shrink
         htmlFor="bootstrap-input"
-        sx={{ display: 'flex', fontSize: '1.3rem', fontWeight: 'bolder' }}
-      >
+        sx={{ display: 'flex', fontSize: '1.3rem', fontWeight: 'bolder' }}>
         {label}
       </InputLabel>
       <SelectInput
@@ -84,8 +83,7 @@ const SelectComponent: React.FC<any> = (props) => {
         name={name}
         inputProps={{ 'data-testid': name }}
         {...rest}
-        defaultValue={'MANI'}
-      >
+        defaultValue={'MANI'}>
         {options?.map((opt: CountryOption) => (
           <MenuItem value={opt.data} key={opt.id}>
             {opt.key}

@@ -94,8 +94,7 @@ const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
             <Formik
               initialValues={initial}
               onSubmit={(data) => handleSubmit(data)}
-              validationSchema={signinSchema}
-            >
+              validationSchema={signinSchema}>
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
                   {/* <FormikCheckerComponent checkFormik={formik} countryData={CountryOptions} specialist={specialistData} schemaInitial={initial} patientAdder={false} /> */}
@@ -220,8 +219,7 @@ const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
                     <button
                       className="btn btn-secondary"
                       data-bs-dismiss={`${checkError ? 'modal' : ''}`}
-                      aria-label="Close"
-                    >
+                      aria-label="Close">
                       save
                     </button>
                   </div>

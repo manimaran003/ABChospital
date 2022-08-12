@@ -57,8 +57,7 @@ const UserProvider: React.FC<Props> = ({ children }) => {
         AuthTool,
         hideSidebar,
         MobileDrawer
-      }}
-    >
+      }}>
       {children}
     </userContext.Provider>
   );

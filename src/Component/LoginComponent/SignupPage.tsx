@@ -55,8 +55,7 @@ const SignupPage = () => {
                     email: ''
                   }}
                   onSubmit={(data) => handleSignUpSubmit(data)}
-                  validationSchema={signupSchema}
-                >
+                  validationSchema={signupSchema}>
                   {(formikSignup) => (
                     <Form onSubmit={formikSignup.handleSubmit}>
                       <div className="container">
@@ -97,8 +96,7 @@ const SignupPage = () => {
                             name="role"
                             className="form-select select-container"
                             onChange={formikSignup.handleChange}
-                            aria-label="Default select example"
-                          >
+                            aria-label="Default select example">
                             <option selected>select role</option>
                             <option value="doctor">doctor</option>
                           </select>
