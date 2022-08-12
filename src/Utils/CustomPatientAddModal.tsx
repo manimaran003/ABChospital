@@ -45,12 +45,12 @@ const CountryOptions: CountryOption[] = [
 ];
 
 const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
-  const [image, setImg] = useState('');
+  const [image, setImg] = useState<string | ArrayBuffer | null>('');
 
   const [checkError, setCheckError] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
-  const handleSubmit = (data: PatientModel) => {
-    const formdata = new FormData();
+  const handleSubmit = (data: PatientModel | any) => {
+    const formdata: any = new FormData();
     formdata.append('patientImage', data?.patientImage);
     formdata.append('dob', data?.dob);
     formdata.append('country', data?.country);

@@ -63,7 +63,7 @@ const specialistData: specialistDoctor[] = [
 ];
 
 const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
-  const [image, setImg] = useState<string>('');
+  const [image, setImg] = useState<string | ArrayBuffer | null>('');
   const [checkError, setCheckError] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const PostResponseData = useSelector((state: RootState) => state?.Doctors.DoctorInfoResponse);

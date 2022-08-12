@@ -24,9 +24,8 @@ export interface DoctorProfile {
 }
 
 export interface DataType {
-  length: number;
   patientName: string;
-  age: number;
+  ageField: number;
   address: string;
   admitDate: string;
   country: string;

@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../store';
 import { GetPatientInfo } from '../../Redux/PatientSlice';
 import CustomPatientEditModal from '../../Utils/CustomPatientEditModal';
-import { UserContextType, DataType } from '../../TypeFile/TypeScriptType';
+import { UserContextType, EditType, DataType } from '../../TypeFile/TypeScriptType';
 import { userContext } from '../../Context/userContext';
 import CustomPatientDelete from '../../Utils/CustomPatientDelete';
 import Pagination from '@mui/material/Pagination';
@@ -53,10 +53,10 @@ const AllPatientsView: React.FC = () => {
 
     return dateAndTime[0].split('-').reverse().join('-');
   };
-  const handleEditProfile = (record: DataType) => {
+  const handleEditProfile = (record: EditType) => {
     editModal(record);
   };
-  const handleDeleteProfile = (record: DataType) => {
+  const handleDeleteProfile = (record: EditType) => {
     setEditId(record?._id);
     setOpen(true);
   };
@@ -91,7 +91,7 @@ const AllPatientsView: React.FC = () => {
       title: 'Action',
       dataIndex: '',
       width: 100,
-      render: (_, record: DataType) => {
+      render: (_, record: EditType) => {
         return (
           <div className="d-flex gap-3">
             <div>
@@ -117,7 +117,7 @@ const AllPatientsView: React.FC = () => {
     }
   ];
 
-  const handleViewProfile = (record: DataType) => {
+  const handleViewProfile = (record: EditType) => {
     navigate('/dashboard/viewPatients', {
       state: record
     });
