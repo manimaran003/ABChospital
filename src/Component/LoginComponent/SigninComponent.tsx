@@ -2,8 +2,8 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { LoginAction } from '../../Redux/AuthenticationSlice';
-import { AppDispatch, RootState } from '../../store';
-import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../store';
+import { useDispatch } from 'react-redux';
 import { userContext } from '../../Context/userContext';
 
 import { Signin, UserContextType } from '../../TypeFile/TypeScriptType';
@@ -35,7 +35,8 @@ const SigninComponent: React.FC = () => {
           email: ''
         }}
         onSubmit={(values) => handleLoginSubmit(values)}
-        validationSchema={signinSchema}>
+        validationSchema={signinSchema}
+      >
         {(formik) => (
           <Form onSubmit={formik.handleSubmit}>
             <div className="container">

@@ -54,7 +54,7 @@ const specialistData: specialistDoctor[] = [
 ];
 
 const CustomDoctorEdit: React.FC<{ id: string }> = ({ id }) => {
-  const { EditedData } = React.useContext(userContext) as UserContextType;
+  const { EditedDoctor } = React.useContext(userContext) as UserContextType;
   const [checkError, setCheckError] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -165,7 +165,8 @@ const CustomDoctorEdit: React.FC<{ id: string }> = ({ id }) => {
           <button
             className="btn btn-secondary"
             data-bs-dismiss={`${checkError ? 'modal' : ''}`}
-            aria-label="Close">
+            aria-label="Close"
+          >
             save
           </button>
         </div>
@@ -175,21 +176,21 @@ const CustomDoctorEdit: React.FC<{ id: string }> = ({ id }) => {
   const MyForm = withFormik({
     mapPropsToValues: () => {
       return {
-        email: EditedData?.email,
-        doctorName: EditedData?.doctorName,
-        address: EditedData?.address,
-        phoneNumber: EditedData?.phoneNumber,
-        dob: EditedData?.dob,
-        specialist: EditedData?.specialist,
-        country: EditedData?.country,
-        doctorImage: EditedData?.doctorImage
+        email: EditedDoctor?.email,
+        doctorName: EditedDoctor?.doctorName,
+        address: EditedDoctor?.address,
+        phoneNumber: EditedDoctor?.phoneNumber,
+        dob: EditedDoctor?.dob,
+        specialist: EditedDoctor?.specialist,
+        country: EditedDoctor?.country,
+        doctorImage: EditedDoctor?.doctorImage
       };
     },
     handleSubmit: (values) => {
       console.log(values);
       setCheckError(!checkError);
       setCheckError(!checkError);
-      dispatch(UpdateDoctorInfo(EditedData._id, values));
+      dispatch(UpdateDoctorInfo(EditedDoctor?._id, values));
     },
     validationSchema: signinSchema
   })(InnerForm);
@@ -201,7 +202,8 @@ const CustomDoctorEdit: React.FC<{ id: string }> = ({ id }) => {
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
       data-bs-backdrop="static"
-      data-bs-keyboard="false">
+      data-bs-keyboard="false"
+    >
       <div className="modal-dialog modal-md modal-dialog-scrollable">
         <div className="modal-content">
           <div className="modal-header">

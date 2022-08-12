@@ -154,7 +154,8 @@ const MainLayout = () => {
         <CssBaseline />
         <AppBar
           position="fixed"
-          sx={{ boxShadow: 'none !important', backgroundColor: '#fff !important' }}>
+          sx={{ boxShadow: 'none !important', backgroundColor: '#fff !important' }}
+        >
           <Header />
         </AppBar>
         {hideSidebar && (
@@ -171,7 +172,8 @@ const MainLayout = () => {
                 borderRight: '0px',
                 marginTop: '57px'
               }
-            }}>
+            }}
+          >
             <Menu
               onClick={onClick}
               style={{ width: '100%', background: '#f4f7f6' }}
@@ -188,7 +190,8 @@ const MainLayout = () => {
           data-bs-scroll="true"
           data-bs-backdrop="false"
           id="offcanvasScrolling"
-          aria-labelledby="offcanvasScrollingLabel">
+          aria-labelledby="offcanvasScrollingLabel"
+        >
           <div className="offcanvas-body" data-bs-dismiss="offcanvas" aria-label="Close">
             <Menu
               onClick={onClick}

@@ -19,7 +19,7 @@ const style = {
   p: 4
 };
 
-const CustomDoctorDelete: React.FC<{ open: boolean; close: any; edit: string }> = ({
+const CustomDoctorDelete: React.FC<{ open: boolean; close: () => void; edit: string }> = ({
   open,
   close,
   edit
@@ -34,7 +34,8 @@ const CustomDoctorDelete: React.FC<{ open: boolean; close: any; edit: string }> 
         open={open}
         onClose={close}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={style}>
           <div className="d-flex justify-content-center mb-3">
             <AiOutlineExclamationCircle className="delete--img" />

@@ -3,14 +3,13 @@ import './SignupPage.scss';
 import doctorImage from '../../Assets/doctor-medicine.svg';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import SigninComponent from './SigninComponent';
-import { AppDispatch, RootState } from '../../store';
+import { AppDispatch } from '../../store';
 import { Signup, UserContextType } from '../../TypeFile/TypeScriptType';
 import { SignupAction } from '../../Redux/AuthenticationSlice';
 import { userContext } from '../../Context/userContext';
 const SignupPage = () => {
-  const SignupResponseData = useSelector((state: RootState) => state?.users.SignupResponse);
   const dispatch = useDispatch<AppDispatch>();
 
   const signupSchema = Yup.object().shape({
@@ -56,7 +55,8 @@ const SignupPage = () => {
                     email: ''
                   }}
                   onSubmit={(data) => handleSignUpSubmit(data)}
-                  validationSchema={signupSchema}>
+                  validationSchema={signupSchema}
+                >
                   {(formikSignup) => (
                     <Form onSubmit={formikSignup.handleSubmit}>
                       <div className="container">
@@ -97,9 +97,8 @@ const SignupPage = () => {
                             name="role"
                             className="form-select select-container"
                             onChange={formikSignup.handleChange}
-
-                            aria-label="Default select example">
-                              
+                            aria-label="Default select example"
+                          >
                             <option selected>select role</option>
                             <option value="doctor">doctor</option>
                           </select>

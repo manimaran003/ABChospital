@@ -63,12 +63,12 @@ const specialistData: specialistDoctor[] = [
 ];
 
 const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
-  const [image, setImg] = useState('');
+  const [image, setImg] = useState<string>('');
   const [checkError, setCheckError] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const PostResponseData = useSelector((state: RootState) => state?.Doctors.DoctorInfoResponse);
   const handleSubmit = (data: DoctorInfo) => {
-    const formData = new FormData();
+    const formData: any = new FormData();
     formData.append('doctorName', data?.doctorName);
     formData.append('email', data?.email);
     formData.append('phoneNumber', data?.phoneNumber);
@@ -94,7 +94,8 @@ const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
             <Formik
               initialValues={initial}
               onSubmit={(data) => handleSubmit(data)}
-              validationSchema={signinSchema}>
+              validationSchema={signinSchema}
+            >
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
                   {/* <FormikCheckerComponent checkFormik={formik} countryData={CountryOptions} specialist={specialistData} schemaInitial={initial} patientAdder={false} /> */}
@@ -110,7 +111,8 @@ const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
                             const reader = new FileReader();
 
                             reader.onload = () => {
-                              setImg(reader.result);
+                              const images = reader.result;
+                              setImg(images);
                             };
                             if (event.target.files[0]) {
                               reader.readAsDataURL(event.target.files[0]);
@@ -218,7 +220,8 @@ const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
                     <button
                       className="btn btn-secondary"
                       data-bs-dismiss={`${checkError ? 'modal' : ''}`}
-                      aria-label="Close">
+                      aria-label="Close"
+                    >
                       save
                     </button>
                   </div>

@@ -4,17 +4,12 @@ import * as Yup from 'yup';
 import { Grid } from '@mui/material';
 import FormikControl from '../CustomComponent/FormikControl';
 import { PostPatientInfo } from '../Redux/PatientSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../store';
 import { PatientModel } from '../TypeFile/TypeScriptType';
 import { IoIosClose } from 'react-icons/io';
 import './CustomPatientDelete.scss';
 interface CountryOption {
-  id: string;
-  key: string;
-  data: string;
-}
-interface specialistDoctor {
   id: string;
   key: string;
   data: string;
@@ -54,7 +49,6 @@ const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
 
   const [checkError, setCheckError] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
-  const PostResponseData = useSelector((state: RootState) => state?.Doctors.DoctorInfoResponse);
   const handleSubmit = (data: PatientModel) => {
     const formdata = new FormData();
     formdata.append('patientImage', data?.patientImage);
@@ -70,7 +64,7 @@ const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
     dispatch(PostPatientInfo(formdata));
   };
   return (
-  <div className="modal fade" id={id} aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal fade" id={id} aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog modal-md modal-dialog-scrollable">
         <div className="modal-content">
           <div className="modal-header">
@@ -83,7 +77,8 @@ const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
             <Formik
               initialValues={initial}
               onSubmit={(data) => handleSubmit(data)}
-              validationSchema={signinSchema}>
+              validationSchema={signinSchema}
+            >
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
                   <div>
@@ -211,8 +206,6 @@ const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
                     </Grid>
                   </div>
 
-                  {/* <FormikCheckerComponent checkFormik={formik} countryData={CountryOptions} specialist={specialistData} schemaInitial={initial} patientAdder={true}/> */}
-
                   <div className="d-flex align-items-center justify-content-center gap-3 mt-4">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                       Cancel
@@ -221,7 +214,8 @@ const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
                       className="btn btn-secondary"
                       type="submit"
                       data-bs-dismiss={`${checkError ? 'modal' : ''}`}
-                      aria-label="Close">
+                      aria-label="Close"
+                    >
                       save
                     </button>
                   </div>

@@ -29,7 +29,7 @@ const AllPatientsView: React.FC = () => {
   const PerPage = 5;
   const count = Math.ceil(reportsData.length / PerPage);
   const datas = PaginationHook(reportsData, PerPage);
-  const handleChange = (event: React.ChangeEvent<unknown>, p: number): void => {
+  const handleChange = (_event: React.ChangeEvent<unknown>, p: number): void => {
     setPage(p);
     datas.jump(p);
   };

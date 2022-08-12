@@ -2,7 +2,7 @@ export interface Signup {
   username: string;
   password: string;
   email: string;
-  role:string;
+  role: string;
 }
 export interface Signin {
   email: string;
@@ -37,9 +37,6 @@ export interface DataType {
   patientImage: string;
 }
 export interface EditType {
-  doctorImage: any;
-  specialist: any;
-  doctorName: any;
   patientImage: string;
   patientName: string;
   ageField: number;
@@ -49,6 +46,18 @@ export interface EditType {
   phoneNumber: string;
   dob: string;
   email: string;
+  _id: string;
+}
+
+export interface DoctorEditType {
+  email: string;
+  doctorName: string;
+  address: string;
+  phoneNumber: string;
+  dob: string;
+  specialist: string;
+  country: string;
+  doctorImage: string;
   _id: string;
 }
 
@@ -65,10 +74,38 @@ export interface PatientModel {
 }
 
 export type UserContextType = {
-  editModal: (data: any) => void;
+  editModal: (data: EditType) => void;
   EditedData: EditType;
   show: boolean;
   AuthTool: (state: boolean) => void;
   hideSidebar: boolean;
+  editDoctorModal: (state: DoctorEditType) => void;
+  EditedDoctor: DoctorEditType;
   MobileDrawer: (state: boolean) => void;
 };
+
+interface numericValue {
+  name: string;
+  amount: string;
+}
+
+interface tableSetup {
+  tableHeader: string;
+  data: numericValue[];
+}
+interface timelineSetup {
+  date: string;
+  reportHeading: string;
+  bloodReport: boolean;
+  admitReport: boolean;
+  checkupReport: boolean;
+  surgeryReport: boolean;
+  images: Array<string>;
+  description: string;
+  reportTable: tableSetup[];
+}
+export interface setup {
+  id: string;
+  username: string;
+  TimeLine: timelineSetup[];
+}

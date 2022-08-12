@@ -55,7 +55,8 @@ const InputComponent: React.FC<any> = (props) => {
         <InputLabel
           shrink
           htmlFor="bootstrap-input"
-          sx={{ fontSize: '1.3rem', fontWeight: 'bolder' }}>
+          sx={{ fontSize: '1.3rem', fontWeight: 'bolder' }}
+        >
           {label}
         </InputLabel>
         <BootstrapInput

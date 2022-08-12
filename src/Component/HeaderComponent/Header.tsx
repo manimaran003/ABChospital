@@ -14,7 +14,7 @@ const Header: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [image, setImage] = useState<string>('');
   const open = Boolean(anchorEl);
-  const handleClick = (event: any) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -84,7 +84,8 @@ const Header: React.FC = () => {
                 onClose={handleClose}
                 MenuListProps={{
                   'aria-labelledby': 'basic-button'
-                }}>
+                }}
+              >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
