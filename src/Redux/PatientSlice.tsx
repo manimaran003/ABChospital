@@ -45,7 +45,7 @@ export const UpdatePatientInfo =
     try {
       const UpdatePatientResponse = await Api({
         method: 'PATCH',
-        url: Constants.BaseUrl + ApiEndpoint.UpdatePatientInfo + `/:${id}`,
+        url: Constants.BaseUrl + ApiEndpoint.UpdatePatientInfo + `/${id}`,
         data
       }).then((res) => {
         toast.success(res?.data?.message);
@@ -62,7 +62,7 @@ export const DeletePatientInfo = (data: string) => async (dispatch: AppDispatch)
   try {
     const DeletePatientResponse = await Api({
       method: 'DELETE',
-      url: Constants.BaseUrl + ApiEndpoint.DeletePatientInfo + `/:${data}`
+      url: Constants.BaseUrl + ApiEndpoint.DeletePatientInfo + `/${data}`
     }).then((res) => {
       toast.success(res?.data?.message);
       return res?.data;
@@ -79,7 +79,7 @@ export const GetPatientById = (data: string) => async (dispatch: AppDispatch) =>
   try {
     const PatientResponse = await Api({
       method: 'PATCH',
-      url: Constants.BaseUrl + ApiEndpoint.GetPatienById + `/:${data}`
+      url: Constants.BaseUrl + ApiEndpoint.GetPatienById + `/${data}`
     }).then((res) => {
       return res?.data;
     });

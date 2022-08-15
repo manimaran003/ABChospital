@@ -7,7 +7,7 @@ const MainDashboard = React.lazy(() => import('./Component/MainDashboard/MainDas
 const ViewDoctor = React.lazy(() => import('./Component/Doctors/ViewDoctor'));
 const ViewPatients = React.lazy(() => import('./Component/Patients/ViewPatients'));
 const SignupPage = React.lazy(() => import('./Component/LoginComponent/SignupPage'));
-
+const ProductsPage = React.lazy(() => import('./Component/ProductsPage/ProductsPage'));
 export const RouterData = [
   {
     path: '/',
@@ -81,5 +81,14 @@ export const RouterData = [
         visibleInMenu: true
       }
     ]
+  },
+  {
+    path: '/Products',
+    name: 'Products',
+    layout: '/dashboard',
+    icon: <AiOutlineUserAdd />,
+    key: 'product1',
+    component: <ProductsPage />,
+    visibleInMenu: true
   }
 ];

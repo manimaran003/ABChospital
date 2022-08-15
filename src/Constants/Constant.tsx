@@ -1,6 +1,6 @@
 export class Constants {
   //static BaseUrl=process.env.REACT_APP_API_URL;
-  static BaseUrl = 'https://abcv1rest.herokuapp.com';
+  static BaseUrl = 'http://localhost:3007';
 }
 export class ApiEndpoint {
   static LoginAuthentication = '/authenticate/login';
@@ -15,5 +15,5 @@ export class ApiEndpoint {
   static UpdateDoctorInfo = '/doctor/doctorUpdate';
   static DeletePatientInfo = '/patient/patientDelete';
   static GetPatienById = 'patientFind';
-  static DeleteDoctor = 'doctor/doctorDelete';
+  static DeleteDoctor = '/doctor/doctorDelete';
 }

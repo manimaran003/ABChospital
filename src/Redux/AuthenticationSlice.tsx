@@ -19,11 +19,14 @@ export const SignupAction = (data: Signup) => async (dispatch: AppDispatch) => {
     if (SignupResponse) {
       TokenService.setSignupUser(SignupResponse?.token);
       dispatch(setSignUpSuccess(SignupResponse));
+      dispatch(setStatus('success'));
+      toast.success('successfully user signed');
     }
   } catch (err) {
     console.log(err);
     const error = err as any;
     const { message } = error.response.data;
+    dispatch(setStatus('error'));
     toast.error(message);
   }
 };
@@ -40,18 +43,17 @@ export const LoginAction = (data: Signin, navigate: any) => async (dispatch: App
     if (LoginResponse) {
       console.log(LoginResponse);
       if (LoginResponse.token && LoginResponse.refreshToken) {
-        TokenService.setUserImage(
-          LoginResponse?.RoleData?.doctorImage ? LoginResponse?.RoleData?.doctorImage : ''
-        );
         TokenService.setAccessToken(LoginResponse?.token);
         TokenService.setRefreshToken(LoginResponse?.refreshToken);
-        navigate('/dashboard');
+        navigate('/dashboard/maindashboard');
       }
       dispatch(setLoginSuccess(LoginResponse));
+      dispatch(setStatus('success'));
     }
   } catch (err) {
     const error = err as any;
     const { message } = error.response.data;
+    dispatch(setStatus('error'));
     toast.error(message);
   }
 };
@@ -66,15 +68,20 @@ export const getUserList = () => async (dispatch: AppDispatch) => {
       return res.data;
     });
     if (userList) {
+      dispatch(setStatus('success'));
       dispatch(AllUserList(userList));
     }
   } catch (err) {
     console.log(err);
+    dispatch(setStatus('error'));
     // const error = err as any
     // let { message } = error?.response?.data
     // console.log(message)
     // dispatch(setSignupError(message))
   }
+};
+export const reset = () => async (dispatch: AppDispatch) => {
+  dispatch(ResetStatus());
 };
 
 const initialState = {
@@ -86,7 +93,8 @@ const initialState = {
   },
   userListResponse: {
     data: {}
-  }
+  },
+  status: 'loading'
 };
 
 const usersSlice = createSlice({
@@ -107,10 +115,17 @@ const usersSlice = createSlice({
       state.userListResponse = {
         data: action.payload
       };
+    },
+    setStatus: (state, action) => {
+      state.status = action.payload;
+    },
+    ResetStatus: (state) => {
+      state.status = 'loading';
     }
   }
 });
 
-export const { setSignUpSuccess, setLoginSuccess, AllUserList } = usersSlice.actions;
+export const { setSignUpSuccess, setLoginSuccess, AllUserList, setStatus, ResetStatus } =
+  usersSlice.actions;
 
 export default usersSlice.reducer;

@@ -138,6 +138,12 @@ const MainLayout = () => {
           defaultSelectedKeys: ['View Dcotor', 'Doctor']
         };
       }
+      case '/dashboard/Products': {
+        return {
+          defaultOpenKeys: ['products'],
+          defaultSelectedKeys: ['Products']
+        };
+      }
 
       default: {
         return {

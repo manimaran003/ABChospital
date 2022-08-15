@@ -53,6 +53,12 @@ const BreadCrumbComponent: React.FC<{ pathname: string }> = ({ pathname }) => {
           route: ['View Doctor', 'Doctor']
         };
       }
+      case '/dashboard/Products': {
+        return {
+          path: 'Products',
+          route: ['Products']
+        };
+      }
       default:
         return {
           path: '',

@@ -28,7 +28,6 @@ const signinSchema = Yup.object().shape({
   address: Yup.string().required('address is required'),
   phoneNumber: Yup.string().required('phone number is required'),
   country: Yup.string().required('country is required'),
-  patientImage: Yup.string().required('image is required'),
   dob: Yup.string().required('Dob is required'),
   ageField: Yup.number().required('number is required'),
   admitDate: Yup.string().required('admitDate is required')
@@ -190,8 +189,7 @@ const CustomPatientEditModal: React.FC<{ id: string }> = ({ id }) => {
         address: EditedData?.address,
         phoneNumber: EditedData?.phoneNumber,
         country: EditedData?.country,
-        patientImage: EditedData?.patientImage,
-        dob: '11/02/2022',
+        dob: EditedData?.dob,
         ageField: EditedData?.ageField,
         admitDate: convertToDate(EditedData?.admitDate)
       };

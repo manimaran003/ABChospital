@@ -14,7 +14,7 @@ const ViewDoctor = () => {
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <Grid container spacing={3}>
-            <Grid item xs={4}>
+            <Grid item xs={12} md={12} lg={4} xl={4}>
               <div className="w-100">
                 <Card sx={{ minWidth: 275, backgroundColor: '#DCDCDC' }}>
                   <CardContent>
@@ -73,12 +73,12 @@ const ViewDoctor = () => {
                 </section>
               </Paper>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={12} md={12} lg={8} xl={8}>
               <Paper elevation={1}>
                 <Grid container>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} md={12} lg={12} xl={12}>
                     <Grid container>
-                      <Grid item xs={3}>
+                      <Grid item xs={12} md={12} lg={3} xl={3}>
                         <div className="d-flex flex-column gap-2 justify-content-center pt-4 pb-4 align-items-center">
                           <div className="cart--show">
                             <ThumbUpAltIcon className="cart--show-icon" />
@@ -87,7 +87,7 @@ const ViewDoctor = () => {
                           </div>
                         </div>
                       </Grid>
-                      <Grid item xs={3}>
+                      <Grid item xs={12} md={12} lg={3} xl={3}>
                         <div className="d-flex flex-column gap-2 justify-content-center pt-4 pb-4 align-items-center">
                           <div className="cart--show">
                             <StarPurple500OutlinedIcon className="cart--show-icon" />
@@ -96,7 +96,7 @@ const ViewDoctor = () => {
                           </div>
                         </div>
                       </Grid>
-                      <Grid item xs={3}>
+                      <Grid item xs={12} md={12} lg={3} xl={3}>
                         <div className="d-flex flex-column gap-2 justify-content-center pt-4 pb-4 align-items-center">
                           <div className="cart--show">
                             <PersonSharpIcon className="cart--show-icon" />
@@ -105,7 +105,7 @@ const ViewDoctor = () => {
                           </div>
                         </div>
                       </Grid>
-                      <Grid item xs={3}>
+                      <Grid item xs={12} md={12} lg={3} xl={3}>
                         <div className="d-flex flex-column gap-2 justify-content-center pt-4 pb-4 align-items-center">
                           <div className="cart--show">
                             <AdbOutlinedIcon className="cart--show-icon" />
@@ -120,9 +120,9 @@ const ViewDoctor = () => {
               </Paper>
               <Box className="mt-3">
                 <Grid container>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} md={12} lg={8} xl={8}>
                     <Grid container spacing={4}>
-                      <Grid item xs={3}>
+                      <Grid item xs={12} md={12} lg={3} xl={3}>
                         <Card sx={{ width: '100%' }}>
                           <CardContent>
                             <div>
@@ -135,7 +135,7 @@ const ViewDoctor = () => {
                           </CardContent>
                         </Card>
                       </Grid>
-                      <Grid item xs={3}>
+                      <Grid item xs={12} md={12} lg={3} xl={3}>
                         <Card sx={{ width: '100%' }}>
                           <CardContent>
                             <div>
@@ -148,7 +148,7 @@ const ViewDoctor = () => {
                           </CardContent>
                         </Card>
                       </Grid>
-                      <Grid item xs={3}>
+                      <Grid item xs={12} md={12} lg={3} xl={3}>
                         <Card sx={{ width: '100%' }}>
                           <CardContent>
                             <div>
@@ -161,7 +161,7 @@ const ViewDoctor = () => {
                           </CardContent>
                         </Card>
                       </Grid>
-                      <Grid item xs={3}>
+                      <Grid item xs={12} md={12} lg={3} xl={3}>
                         <Card sx={{ width: '100%' }}>
                           <CardContent>
                             <div>

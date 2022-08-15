@@ -11,7 +11,6 @@ interface DoctorInfo {
   dob: string;
   specialist: string;
   country: string;
-  doctorImage: string;
 }
 export const PostDoctorInfo = (data: DoctorInfo) => {
   return async (dispatch: AppDispatch) => {
@@ -53,7 +52,7 @@ export const UpdateDoctorInfo = (id: string, data: DoctorInfo) => async (dispatc
   try {
     const UpdateDoctorResponse = await Api({
       method: 'PATCH',
-      url: Constants.BaseUrl + ApiEndpoint.UpdateDoctorInfo + `/:${id}`,
+      url: Constants.BaseUrl + ApiEndpoint.UpdateDoctorInfo + `/${id}`,
       data
     }).then((res) => {
       console.log(res, 'response');
@@ -71,17 +70,14 @@ export const UpdateDoctorInfo = (id: string, data: DoctorInfo) => async (dispatc
 
 export const DeleteDoctor = (id: string) => async (dispatch: AppDispatch) => {
   try {
-    const UpdateDoctorResponse = await Api({
+    await Api({
       method: 'DELETE',
-      url: Constants.BaseUrl + ApiEndpoint.DeleteDoctor + `/:${id}`
+      url: Constants.BaseUrl + ApiEndpoint.DeleteDoctor + `/${id}`
     }).then((res) => {
-      console.log(res, 'response');
       toast.success(res?.data?.message);
+      dispatch(GetDoctorInfo());
       return res?.data;
     });
-    if (UpdateDoctorResponse) {
-      dispatch(setUpdateResponse(UpdateDoctorResponse));
-    }
   } catch (err) {
     console.log(err);
   }

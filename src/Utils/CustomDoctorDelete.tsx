@@ -27,6 +27,7 @@ const CustomDoctorDelete: React.FC<{ open: boolean; close: () => void; edit: str
   const dispatch = useDispatch<AppDispatch>();
   const handleDelete = () => {
     dispatch(DeleteDoctor(edit));
+    close();
   };
   return (
     <div>

@@ -28,7 +28,6 @@ interface DoctorInfo {
   dob: string;
   specialist: string;
   country: string;
-  doctorImage: string;
 }
 const signinSchema = Yup.object().shape({
   email: Yup.string().email().required('Enter valid email-id'),
@@ -37,7 +36,6 @@ const signinSchema = Yup.object().shape({
   phoneNumber: Yup.string().required('phone number is required'),
   country: Yup.string().required('country is required'),
   specialist: Yup.string().required('speciality is required'),
-  doctorImage: Yup.mixed().required('File is required'),
   dob: Yup.string().required('Dob is required')
 });
 
@@ -181,8 +179,7 @@ const CustomDoctorEdit: React.FC<{ id: string }> = ({ id }) => {
         phoneNumber: EditedDoctor?.phoneNumber,
         dob: EditedDoctor?.dob,
         specialist: EditedDoctor?.specialist,
-        country: EditedDoctor?.country,
-        doctorImage: EditedDoctor?.doctorImage
+        country: EditedDoctor?.country
       };
     },
     handleSubmit: (values) => {

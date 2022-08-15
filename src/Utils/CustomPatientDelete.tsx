@@ -27,6 +27,7 @@ const CustomPatientDelete: React.FC<{ open: boolean; close: () => void; edit: st
   const dispatch = useDispatch<AppDispatch>();
   const handleDelete = () => {
     dispatch(DeletePatientInfo(edit));
+    close();
   };
   return (
     <div>

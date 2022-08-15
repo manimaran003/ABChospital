@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { LoginAction } from '../../Redux/AuthenticationSlice';
-import { AppDispatch } from '../../store';
-import { useDispatch } from 'react-redux';
+import { LoginAction, reset } from '../../Redux/AuthenticationSlice';
+import { AppDispatch, RootState } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { Dots } from 'react-activity';
+import 'react-activity/dist/library.css';
 import { userContext } from '../../Context/userContext';
 
 import { Signin, UserContextType } from '../../TypeFile/TypeScriptType';
@@ -20,13 +22,28 @@ const signinSchema = Yup.object().shape({
 const SigninComponent: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const LoginResponse = useSelector((state: RootState) => state?.users.status);
+  console.log(LoginResponse, 'same');
+  const [loading, setLoading] = useState<boolean>(false);
   const { AuthTool } = React.useContext(userContext) as UserContextType;
   const handleLoginSubmit = (values: Signin) => {
+    setLoading(true);
     dispatch(LoginAction(values, navigate));
+  };
+  const Loader = () => {
+    return <Dots color="#727981" size={32} speed={1} animating={true} />;
   };
   const goToSignUp = () => {
     AuthTool(false);
   };
+  useEffect(() => {
+    if (LoginResponse === 'success' || LoginResponse === 'error') {
+      setLoading(false);
+    }
+  }, [LoginResponse]);
+  useEffect(() => {
+    reset();
+  }, [true]);
   return (
     <div>
       <Formik
@@ -39,11 +56,6 @@ const SigninComponent: React.FC = () => {
         {(formik) => (
           <Form onSubmit={formik.handleSubmit}>
             <div className="container">
-              <div>
-                <div className="demo--show">please use this credential demo use</div>
-                <div>cmmaran102@gmail.com</div>
-                <div>Github@1999</div>
-              </div>
               <h1 className="heading mt-3 mb-4">Signin Account</h1>
               <div className="d-flex flex-column gap-3 main--input">
                 <input
@@ -73,6 +85,7 @@ const SigninComponent: React.FC = () => {
                   Sign in
                 </button>
               </div>
+              {loading && <Loader />}
               <p className="login--text mt-3">
                 Dont&apos;t have an account <span onClick={goToSignUp}>Signup</span>?
               </p>

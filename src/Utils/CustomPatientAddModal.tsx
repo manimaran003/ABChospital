@@ -21,7 +21,6 @@ const initial = {
   address: '',
   phoneNumber: '',
   country: '',
-  patientImage: '',
   dob: '',
   ageField: 0,
   admitDate: ''
@@ -32,7 +31,6 @@ const signinSchema = Yup.object().shape({
   address: Yup.string().required('address is required'),
   phoneNumber: Yup.string().required('phone number is required'),
   country: Yup.string().required('country is required'),
-  patientImage: Yup.mixed().required('File is required'),
   dob: Yup.string().required('Dob is required'),
   ageField: Yup.number().required('number is required'),
   admitDate: Yup.string().required('admitDate is required')
@@ -45,23 +43,22 @@ const CountryOptions: CountryOption[] = [
 ];
 
 const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
-  const [image, setImg] = useState<string | ArrayBuffer | null>('');
+  // const [image, setImg] = useState<string | ArrayBuffer | null>('');
 
   const [checkError, setCheckError] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const handleSubmit = (data: PatientModel | any) => {
-    const formdata: any = new FormData();
-    formdata.append('patientImage', data?.patientImage);
-    formdata.append('dob', data?.dob);
-    formdata.append('country', data?.country);
-    formdata.append('address', data?.address);
-    formdata.append('admitDate', data?.admitDate);
-    formdata.append('phoneNumber', data?.phoneNumber);
-    formdata.append('email', data?.email);
-    formdata.append('ageField', data?.ageField);
-    formdata.append('patientName', data?.patientName);
-    setCheckError(!checkError);
-    dispatch(PostPatientInfo(formdata));
+    // const formdata: any = new FormData();
+    // formdata.append('dob', data?.dob);
+    // formdata.append('country', data?.country);
+    // formdata.append('address', data?.address);
+    // formdata.append('admitDate', data?.admitDate);
+    // formdata.append('phoneNumber', data?.phoneNumber);
+    // formdata.append('email', data?.email);
+    // formdata.append('ageField', data?.ageField);
+    // formdata.append('patientName', data?.patientName);
+    setCheckError(true);
+    dispatch(PostPatientInfo(data));
   };
   return (
     <div className="modal fade" id={id} aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,28 +78,6 @@ const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
                   <div>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <FormikControl
-                          control="upload"
-                          type="file"
-                          name="patientImage"
-                          onChange={(event: any) => {
-                            formik.setFieldValue('patientImage', event.target.files[0]);
-                            const reader = new FileReader();
-                            reader.onload = () => {
-                              setImg(reader?.result);
-                            };
-                            if (event.target.files[0]) {
-                              reader.readAsDataURL(event.target.files[0]);
-                            }
-                          }}
-                          error={formik.errors.patientImage}
-                          imgData={image}
-                          test="test1"
-                        />
-                      </Grid>
-                    </Grid>
                     <Grid container spacing={2}>
                       <Grid item xs={6}>
                         <FormikControl

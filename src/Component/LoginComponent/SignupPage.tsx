@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './SignupPage.scss';
 import doctorImage from '../../Assets/doctor-medicine.svg';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { Dots } from 'react-activity';
+import { useDispatch, useSelector } from 'react-redux';
 import SigninComponent from './SigninComponent';
-import { AppDispatch } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import { Signup, UserContextType } from '../../TypeFile/TypeScriptType';
 import { SignupAction } from '../../Redux/AuthenticationSlice';
 import { userContext } from '../../Context/userContext';
@@ -23,15 +24,26 @@ const SignupPage = () => {
       .required('Password is required'),
     role: Yup.string().required('Please enter role')
   });
-
+  const SignResponse = useSelector((state: RootState) => state?.users.status);
+  console.log(SignResponse, 'af');
+  const [loading, setLoading] = useState<boolean>(false);
   const { show, AuthTool } = React.useContext(userContext) as UserContextType;
 
   const handleSignUpSubmit = (values: Signup) => {
     console.log(values);
+    setLoading(true);
     dispatch(SignupAction(values));
   };
   const GotoLogin = () => {
     AuthTool(true);
+  };
+  useEffect(() => {
+    if (SignResponse === 'success' || SignResponse === 'error') {
+      setLoading(false);
+    }
+  }, [SignResponse]);
+  const Loader = () => {
+    return <Dots color="#727981" size={32} speed={1} animating={true} />;
   };
 
   return (
@@ -96,6 +108,7 @@ const SignupPage = () => {
                             name="role"
                             className="form-select select-container"
                             onChange={formikSignup.handleChange}
+                            data-testid="role"
                             aria-label="Default select example">
                             <option selected>select role</option>
                             <option value="doctor">doctor</option>
@@ -109,6 +122,7 @@ const SignupPage = () => {
                             Sign up
                           </button>
                         </div>
+                        {loading && <Loader />}
                         <p className="login--text mt-3">
                           Already have an account <span onClick={GotoLogin}>Login</span>?
                         </p>

@@ -81,9 +81,9 @@ const ViewPatients = () => {
   return (
     <div className="p-3">
       <div className="row">
-        <div className="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
           <Paper className="view--paper" elevation={1}>
-            <div className="profile--card d-flex flex-grow-1 h-100 w-100">
+            <div className="profile--card d-flex flex-grow-1  h-100 w-100">
               <Card className="w-100">
                 <CardMedia
                   component="img"

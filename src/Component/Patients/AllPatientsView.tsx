@@ -17,6 +17,8 @@ import { userContext } from '../../Context/userContext';
 import CustomPatientDelete from '../../Utils/CustomPatientDelete';
 import Pagination from '@mui/material/Pagination';
 import PaginationHook from '../../Utils/PaginationHook';
+import { Dots } from 'react-activity';
+import 'react-activity/dist/library.css';
 
 const AllPatientsView: React.FC = () => {
   const [page, setPage] = useState(1);
@@ -24,11 +26,22 @@ const AllPatientsView: React.FC = () => {
   const [edit, setEditId] = React.useState('');
   const { editModal } = React.useContext(userContext) as UserContextType;
   const dispatch = useDispatch<AppDispatch>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [table, setTable] = useState<boolean>(false);
   const GetResponseData = useSelector((state: RootState) => state?.patient.GetPatientResponse);
   const reportsData = GetResponseData?.data;
   const PerPage = 5;
   const count = Math.ceil(reportsData.length / PerPage);
   const datas = PaginationHook(reportsData, PerPage);
+  const Loader = () => {
+    return <Dots color="#727981" size={32} speed={1} animating={true} />;
+  };
+  useEffect(() => {
+    if (reportsData) {
+      setLoading(false);
+      setTable(true);
+    }
+  }, [reportsData]);
   const handleChange = (_event: React.ChangeEvent<unknown>, p: number): void => {
     setPage(p);
     datas.jump(p);
@@ -95,21 +108,29 @@ const AllPatientsView: React.FC = () => {
         return (
           <div className="d-flex gap-3">
             <div>
-              <GrView onClick={() => handleViewProfile(record)} />
+              <GrView className="icon--hover" onClick={() => handleViewProfile(record)} />
             </div>
             <div>
-              <GrFormAdd data-bs-toggle="modal" data-bs-target="#exampleModals" />
+              <GrFormAdd
+                className="icon--hover"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModals"
+              />
               <CustomPatientAddModal id={'exampleModals'} />
             </div>
             <div>
               <BiEdit
+                className="icon--hover"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 onClick={() => handleEditProfile(record)}
               />
             </div>
             <div>
-              <AiOutlineDelete onClick={() => handleDeleteProfile(record)} />
+              <AiOutlineDelete
+                className="icon--hover"
+                onClick={() => handleDeleteProfile(record)}
+              />
             </div>
           </div>
         );
@@ -125,20 +146,29 @@ const AllPatientsView: React.FC = () => {
 
   return (
     <div className="">
-      <Table
-        columns={columns}
-        dataSource={datas?.currentData()}
-        scroll={{ y: 240 }}
-        pagination={false}
-      />
-      <Pagination
-        count={count}
-        page={page}
-        variant="outlined"
-        shape="rounded"
-        className="mt-3 d-flex justify-content-end me-2"
-        onChange={handleChange}
-      />
+      {loading && <Loader />}
+      {loading ? null : (
+        <div>
+          {table && (
+            <>
+              <Table
+                columns={columns}
+                dataSource={datas?.currentData()}
+                scroll={{ y: 240 }}
+                pagination={false}
+              />
+              <Pagination
+                count={count}
+                page={page}
+                variant="outlined"
+                shape="rounded"
+                className="mt-3 d-flex justify-content-end me-2"
+                onChange={handleChange}
+              />
+            </>
+          )}
+        </div>
+      )}
       <CustomPatientEditModal id={'exampleModal'} />
       <CustomPatientDelete open={open} close={handleClose} edit={edit} />
     </div>

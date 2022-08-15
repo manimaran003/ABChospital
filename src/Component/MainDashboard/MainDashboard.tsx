@@ -15,6 +15,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GetPatientInfo } from '../../Redux/PatientSlice';
 import { AppDispatch, RootState } from '../../store';
 import PaginationHook from '../../Utils/PaginationHook';
+import { Dots } from 'react-activity';
+import 'react-activity/dist/library.css';
 
 interface DataType {
   patientName: string;
@@ -63,6 +65,8 @@ const columns: ColumnsType<DataType> = [
 const MainDashboard = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch<AppDispatch>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [table, setTable] = useState<boolean>(false);
   const GetResponseData = useSelector((state: RootState) => state?.patient.GetPatientResponse);
   useEffect(() => {
     dispatch(GetPatientInfo());
@@ -75,6 +79,15 @@ const MainDashboard = () => {
     setPage(p);
     PaginatedData.jump(p);
   };
+  const Loader = () => {
+    return <Dots color="#727981" size={32} speed={1} animating={true} />;
+  };
+  useEffect(() => {
+    if (reportsData) {
+      setLoading(false);
+      setTable(true);
+    }
+  }, [reportsData]);
   return (
     <div className="p-3">
       <div className="row">
@@ -86,7 +99,7 @@ const MainDashboard = () => {
               </div>
               <div className="d-flex flex-column align-items-start">
                 <span className="brandData-head">Total Patient</span>
-                <span className="brandData-no">215</span>
+                <span className="brandData-no">16</span>
               </div>
             </div>
             <Divider className="brandData-muiDivider" />
@@ -96,7 +109,7 @@ const MainDashboard = () => {
               </div>
               <div className="d-flex flex-column align-items-start">
                 <span className="brandData-head">Operations</span>
-                <span className="brandData-no">215</span>
+                <span className="brandData-no">21</span>
               </div>
             </div>
           </Paper>
@@ -106,8 +119,8 @@ const MainDashboard = () => {
                 <FaUserAlt className="brandData-icon" />
               </div>
               <div className="d-flex flex-column align-items-start">
-                <span className="brandData-head">Total Patient</span>
-                <span className="brandData-no">215</span>
+                <span className="brandData-head">Total Doctors</span>
+                <span className="brandData-no">3</span>
               </div>
             </div>
             <Divider className="brandData-muiDivider" />
@@ -117,28 +130,7 @@ const MainDashboard = () => {
               </div>
               <div className="d-flex flex-column align-items-start">
                 <span className="brandData-head">Operations</span>
-                <span className="brandData-no">215</span>
-              </div>
-            </div>
-          </Paper>
-          <Paper elevation={0} className="dash--card p-3 mt-5">
-            <div className="d-flex p-3 align-items-center gap-3">
-              <div className="d-flex justify-content-center brandData">
-                <FaUserAlt className="brandData-icon" />
-              </div>
-              <div className="d-flex flex-column align-items-start">
-                <span className="brandData-head">Total Patient</span>
-                <span className="brandData-no">215</span>
-              </div>
-            </div>
-            <Divider className="brandData-muiDivider" />
-            <div className="d-flex p-3 align-items-center gap-3">
-              <div className="d-flex justify-content-center brandData">
-                <FaUserAlt className="brandData-icon" />
-              </div>
-              <div className="d-flex flex-column align-items-start">
-                <span className="brandData-head">Operations</span>
-                <span className="brandData-no">215</span>
+                <span className="brandData-no">23</span>
               </div>
             </div>
           </Paper>
@@ -271,20 +263,25 @@ const MainDashboard = () => {
                 </div>
               </div>
             </div>
-            <Table
-              columns={columns}
-              dataSource={PaginatedData?.currentData()}
-              pagination={false}
-              scroll={{ y: 240 }}
-            />
-            <Pagination
-              count={count}
-              page={page}
-              variant="outlined"
-              shape="rounded"
-              className="mt-3 d-flex justify-content-end me-2 p-3"
-              onChange={handleChange}
-            />
+            {loading && <Loader />}
+            {loading ? null : (
+              <>
+                <Table
+                  columns={columns}
+                  dataSource={PaginatedData?.currentData()}
+                  pagination={false}
+                  scroll={{ y: 240 }}
+                />
+                <Pagination
+                  count={count}
+                  page={page}
+                  variant="outlined"
+                  shape="rounded"
+                  className="mt-3 d-flex justify-content-end me-2 p-3"
+                  onChange={handleChange}
+                />
+              </>
+            )}
           </Paper>
         </div>
       </div>

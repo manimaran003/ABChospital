@@ -16,7 +16,6 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     email: '',
     address: '',
     phoneNumber: '',
-    patientImage: '',
     _id: ''
   });
   const [EditedDoctor, setEditedDoctor] = useState<DoctorEditType>({
@@ -27,7 +26,6 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     dob: '',
     specialist: '',
     country: '',
-    doctorImage: '',
     _id: ''
   });
   const [show, setShow] = useState<boolean>(true);

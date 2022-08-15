@@ -12,7 +12,6 @@ export interface Signin {
 export interface DoctorProfile {
   _id: string;
   doctorName: string;
-  doctorImage: string;
   address: string;
   specialist: string;
   dob: string;
@@ -33,10 +32,8 @@ export interface DataType {
   dob: string;
   email: string;
   _id: string;
-  patientImage: string;
 }
 export interface EditType {
-  patientImage: string;
   patientName: string;
   ageField: number;
   address: string;
@@ -56,12 +53,10 @@ export interface DoctorEditType {
   dob: string;
   specialist: string;
   country: string;
-  doctorImage: string;
   _id: string;
 }
 
 export interface PatientModel {
-  patientImage: string;
   patientName: string;
   ageField: number;
   address: string;

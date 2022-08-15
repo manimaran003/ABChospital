@@ -9,16 +9,22 @@ import Avatar from '@mui/material/Avatar';
 import { TiMessages } from 'react-icons/ti';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom';
 import TokenService from '../../Constants/token.service';
 const Header: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [image, setImage] = useState<string>('');
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleLogout = () => {
+    navigate('/login');
+    sessionStorage.clear();
   };
   useEffect(() => {
     setImage(TokenService.getUserImage());
@@ -87,7 +93,7 @@ const Header: React.FC = () => {
                 }}>
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
           </div>
