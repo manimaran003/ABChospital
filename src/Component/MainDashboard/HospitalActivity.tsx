@@ -3,8 +3,8 @@ import './HospitalActivity.scss';
 import { AiOutlineLike } from 'react-icons/ai';
 import { FaRegComment } from 'react-icons/fa';
 import { Card, CardMedia, Divider } from '@mui/material';
-
-const HospitalActivity: React.FC<{ activities: string; reportsData: any }> = (props) => {
+import { numericValue, setup, tableSetup, timelineSetup } from '../../TypeFile/TypeScriptType';
+const HospitalActivity: React.FC<{ activities: string; reportsData: setup[] }> = (props) => {
   return (
     <div>
       {props.activities === 'HospitalActivity' ? (
@@ -38,8 +38,8 @@ const HospitalActivity: React.FC<{ activities: string; reportsData: any }> = (pr
           <section className="">
             <ul className="timeline">
               {props.reportsData.length > 0 &&
-                props.reportsData.map((val: any) => {
-                  return val.TimeLine.map((item: any) => {
+                props.reportsData.map((val: setup) => {
+                  return val.TimeLine.map((item: timelineSetup) => {
                     return (
                       <>
                         <li className="timeline-item mb-5  d-flex align-items-start flex-column">
@@ -56,13 +56,13 @@ const HospitalActivity: React.FC<{ activities: string; reportsData: any }> = (pr
                           <div className="w-100">
                             <div className="d-flex gap-5">
                               {item.images.length > 0 &&
-                                item?.images?.map((val: string, index: number) => {
+                                item?.images?.map((valText: string, indexes: number) => {
                                   return (
-                                    <Card sx={{ width: 300 }} key={index}>
+                                    <Card sx={{ width: 300 }} key={indexes}>
                                       <CardMedia
                                         component="img"
                                         height="140"
-                                        image={val}
+                                        image={valText}
                                         alt="green iguana"
                                       />
                                     </Card>
@@ -71,16 +71,16 @@ const HospitalActivity: React.FC<{ activities: string; reportsData: any }> = (pr
                             </div>
                             {item?.reportTable.length > 0 && (
                               <div className="report--table w-100 d-flex gap-3 mt-4">
-                                {item?.reportTable?.map((itm: any, index: number) => {
+                                {item?.reportTable?.map((itm: tableSetup, index: number) => {
                                   return (
                                     <div className="reports" key={index}>
                                       <div className="d-flex justify-content-start">
                                         {itm?.tableHeader}
                                       </div>
                                       <Divider />
-                                      {itm?.data?.map((Value: any, index: number) => {
+                                      {itm?.data?.map((Value: numericValue, indexNo: number) => {
                                         return (
-                                          <div key={index}>
+                                          <div key={indexNo}>
                                             <div className="d-flex justify-content-between gap-5">
                                               <span>{Value.name}</span>
                                               <span>{Value.amount}</span>

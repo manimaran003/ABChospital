@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, useMemo } from 'react';
 import './AllPatientsView.scss';
 import 'antd/dist/antd.css';
 import { GrView, GrFormAdd } from 'react-icons/gr';
@@ -24,24 +24,24 @@ const AllPatientsView: React.FC = () => {
   const [page, setPage] = useState(1);
   const [open, setOpen] = React.useState(false);
   const [edit, setEditId] = React.useState('');
-  const { editModal } = React.useContext(userContext) as UserContextType;
-  const dispatch = useDispatch<AppDispatch>();
   const [loading, setLoading] = useState<boolean>(true);
   const [table, setTable] = useState<boolean>(false);
+  const { editModal } = React.useContext(userContext) as UserContextType;
+  const dispatch = useDispatch<AppDispatch>();
   const GetResponseData = useSelector((state: RootState) => state?.patient.GetPatientResponse);
   const reportsData = GetResponseData?.data;
   const PerPage = 5;
   const count = Math.ceil(reportsData.length / PerPage);
   const datas = PaginationHook(reportsData, PerPage);
-  const Loader = () => {
-    return <Dots color="#727981" size={32} speed={1} animating={true} />;
-  };
   useEffect(() => {
     if (reportsData) {
       setLoading(false);
       setTable(true);
     }
   }, [reportsData]);
+  const Loader = () => {
+    return <Dots color="#727981" size={32} speed={1} animating={true} />;
+  };
   const handleChange = (_event: React.ChangeEvent<unknown>, p: number): void => {
     setPage(p);
     datas.jump(p);
@@ -61,6 +61,72 @@ const AllPatientsView: React.FC = () => {
   useEffect(() => {
     getAllPatientProfile();
   }, [getAllPatientProfile]);
+  const columns = useMemo<ColumnsType<DataType>>(() => {
+    return [
+      {
+        title: 'patientName',
+        dataIndex: 'patientName',
+        width: 150
+      },
+      {
+        title: 'Age',
+        dataIndex: 'ageField',
+        width: 100
+      },
+      {
+        title: 'Address',
+        dataIndex: 'address',
+        width: 150
+      },
+      {
+        title: 'admitDate',
+        dataIndex: 'admitDate',
+        width: 150,
+        render: (date: string) => getFullDate(date)
+      },
+      {
+        title: 'phoneNumber',
+        dataIndex: 'phoneNumber',
+        width: 140
+      },
+      {
+        title: 'Action',
+        dataIndex: '',
+        width: 100,
+        render: (record: EditType) => {
+          return (
+            <div className="d-flex gap-3">
+              <div>
+                <GrView className="icon--hover" onClick={() => handleViewProfile(record)} />
+              </div>
+              <div>
+                <GrFormAdd
+                  className="icon--hover"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModals"
+                />
+                <CustomPatientAddModal id={'exampleModals'} />
+              </div>
+              <div>
+                <BiEdit
+                  className="icon--hover"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  onClick={() => handleEditProfile(record)}
+                />
+              </div>
+              <div>
+                <AiOutlineDelete
+                  className="icon--hover"
+                  onClick={() => handleDeleteProfile(record)}
+                />
+              </div>
+            </div>
+          );
+        }
+      }
+    ];
+  }, []);
   const getFullDate = (date: string): string => {
     const dateAndTime = date.split('T');
 
@@ -73,71 +139,6 @@ const AllPatientsView: React.FC = () => {
     setEditId(record?._id);
     setOpen(true);
   };
-  const columns: ColumnsType<DataType> = [
-    {
-      title: 'patientName',
-      dataIndex: 'patientName',
-      width: 150
-    },
-    {
-      title: 'Age',
-      dataIndex: 'ageField',
-      width: 100
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      width: 150
-    },
-    {
-      title: 'admitDate',
-      dataIndex: 'admitDate',
-      width: 150,
-      render: (date: string) => getFullDate(date)
-    },
-    {
-      title: 'phoneNumber',
-      dataIndex: 'phoneNumber',
-      width: 140
-    },
-    {
-      title: 'Action',
-      dataIndex: '',
-      width: 100,
-      render: (_, record: EditType) => {
-        return (
-          <div className="d-flex gap-3">
-            <div>
-              <GrView className="icon--hover" onClick={() => handleViewProfile(record)} />
-            </div>
-            <div>
-              <GrFormAdd
-                className="icon--hover"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModals"
-              />
-              <CustomPatientAddModal id={'exampleModals'} />
-            </div>
-            <div>
-              <BiEdit
-                className="icon--hover"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                onClick={() => handleEditProfile(record)}
-              />
-            </div>
-            <div>
-              <AiOutlineDelete
-                className="icon--hover"
-                onClick={() => handleDeleteProfile(record)}
-              />
-            </div>
-          </div>
-        );
-      }
-    }
-  ];
-
   const handleViewProfile = (record: EditType) => {
     navigate('/dashboard/viewPatients', {
       state: record

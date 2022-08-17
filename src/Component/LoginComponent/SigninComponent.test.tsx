@@ -91,6 +91,19 @@ describe('to test Sign in page', () => {
       expect(passRequired).toHaveTextContent('Password is required');
     });
   });
+  test('click the signup button to test', () => {
+    render(
+      <Provider store={store}>
+        <Router>
+          <UserProvider>
+            <SigninComponent />
+          </UserProvider>
+        </Router>
+      </Provider>
+    );
+    const btn = screen.getByText('Signup', { exact: false });
+    userEvent.click(btn);
+  });
   test('check correct email is displayed show error message in signin component', async () => {
     render(
       <Provider store={store}>

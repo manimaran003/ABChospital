@@ -21,7 +21,6 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-//instance.defaults.headers.common['Authorization'] = "Bearer " + TokenService.getAccessToken();
 instance.interceptors.response.use(
   (response) => {
     return response;

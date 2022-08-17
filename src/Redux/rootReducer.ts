@@ -9,6 +9,4 @@ const rootReducer = combineReducers({
   patient: PatientSlice
 });
 
-// export type RootState = ReturnType
-
 export default rootReducer;

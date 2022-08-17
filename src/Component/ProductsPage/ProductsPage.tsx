@@ -1,21 +1,13 @@
 import React from 'react';
 import './ProductsPage.scss';
-import { alpha, styled } from '@mui/material/styles';
 import Carousel from 'react-multi-carousel';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import SpeedDial, { SpeedDialProps } from '@mui/material/SpeedDial';
 import 'react-multi-carousel/lib/styles.css';
 import {
   Grid,
   Box,
-  FormControl,
   Paper,
-  InputLabel,
   Typography,
-  InputBase,
   Divider,
-  InputAdornment,
-  IconButton,
   Card,
   CardActionArea,
   CardMedia
@@ -38,37 +30,7 @@ const responsive = {
     paritialVisibilityGutter: 5
   }
 };
-const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
-  position: 'absolute',
-  '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
-    bottom: theme.spacing(2),
-    right: theme.spacing(2)
-  },
-  '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
-    top: theme.spacing(2),
-    left: theme.spacing(2)
-  }
-}));
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  'label + &': {
-    marginTop: theme.spacing(3)
-  },
-  '& .MuiInputBase-input': {
-    borderRadius: 4,
-    position: 'relative',
-    backgroundColor: '#dcdfce',
-    border: '1px solid #ced4da',
-    fontSize: 16,
-    width: '100%',
-    padding: '20px 12px',
-    transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
-    // Use the system font instead of the default Roboto font.
-    '&:focus': {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main
-    }
-  }
-}));
+
 const ProductsPage = () => {
   return (
     <div>

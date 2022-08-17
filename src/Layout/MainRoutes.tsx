@@ -6,19 +6,22 @@ import MainLayout from './MainLayout';
 import InnerContent from './InnerContent';
 import SignupPage from '../Component/LoginComponent/SignupPage';
 import LoadingComponent from '../Utils/LoadingComponent';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 const MainRoutes = () => (
-  <Suspense fallback={<LoadingComponent />}>
-    <Routes>
-      <Route path="/" element={<ProtectedRoute />}>
-        <Route path="/" element={<InnerContent />}>
-          <Route path="/" element={<Navigate replace to="/dashboard/maindashboard" />} />
-          <Route path="*" element={<MainLayout />} />
+  <ErrorBoundary>
+    <Suspense fallback={<LoadingComponent />}>
+      <Routes>
+        <Route path="/" element={<ProtectedRoute />}>
+          <Route path="/" element={<InnerContent />}>
+            <Route path="/" element={<Navigate replace to="/dashboard/maindashboard" />} />
+            <Route path="*" element={<MainLayout />} />
+          </Route>
         </Route>
-      </Route>
-      <Route path="/" element={<PublicRoute />}>
-        <Route path="/login" element={<SignupPage />} />
-      </Route>
-    </Routes>
-  </Suspense>
+        <Route path="/" element={<PublicRoute />}>
+          <Route path="/login" element={<SignupPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  </ErrorBoundary>
 );
 export default MainRoutes;

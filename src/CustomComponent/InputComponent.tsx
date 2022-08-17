@@ -44,9 +44,10 @@ interface FieldProps {
   error: string;
   helperText: string;
   test: string;
+  value: string;
 }
 
-const InputComponent: React.FC<any> = (props) => {
+const InputComponent: React.FC<FieldProps> = (props) => {
   const { label, name, type, onChange, error, helperText, test, value } = props;
   return (
     <div>

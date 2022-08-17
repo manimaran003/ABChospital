@@ -4,10 +4,22 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import StarPurple500OutlinedIcon from '@mui/icons-material/StarPurple500Outlined';
 import AdbOutlinedIcon from '@mui/icons-material/AdbOutlined';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
+import { DoctorProfile } from '../../TypeFile/TypeScriptType';
 import './ViewDoctor.scss';
+
+interface LocationState {
+  hash: string;
+  key: string;
+  pathname: string;
+  search: string;
+  state: DoctorProfile;
+}
+
 const ViewDoctor = () => {
   const location: any = useLocation();
+  console.log(location);
   const detail = location.state;
+  console.log(detail);
 
   return (
     <div className="w-100">
@@ -19,11 +31,7 @@ const ViewDoctor = () => {
                 <Card sx={{ minWidth: 275, backgroundColor: '#DCDCDC' }}>
                   <CardContent>
                     <div className="d-flex justify-content-center p-3">
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={detail.doctorImage}
-                        sx={{ width: 150, height: 150 }}
-                      />
+                      <Avatar alt="Remy Sharp" src="" sx={{ width: 150, height: 150 }} />
                     </div>
                     <div className="content">
                       <h6 className="content-name">{detail.doctorName}</h6>

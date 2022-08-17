@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { DataType, DoctorEditType } from '../TypeFile/TypeScriptType';
-const PaginationHook = (data: DataType | DoctorEditType | any, PerPage: number) => {
+import { EditType } from '../TypeFile/TypeScriptType';
+const PaginationHook = (data: EditType[], PerPage: number) => {
   const [currentPage, setCurrentPage] = useState(1);
   const MaxPage = Math.ceil(data?.length / PerPage);
   function next() {

@@ -1,7 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 const useAuth = () => {
   const user = sessionStorage.getItem('accessToken');
-  console.log(user);
   if (user) {
     return true;
   } else {
@@ -9,7 +8,7 @@ const useAuth = () => {
   }
 };
 
-const ProtectedRoute = (props: any) => {
+const ProtectedRoute = () => {
   const auth = useAuth();
 
   return auth ? <Outlet /> : <Navigate to="/login" />;

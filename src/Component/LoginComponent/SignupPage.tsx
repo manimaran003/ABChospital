@@ -25,12 +25,10 @@ const SignupPage = () => {
     role: Yup.string().required('Please enter role')
   });
   const SignResponse = useSelector((state: RootState) => state?.users.status);
-  console.log(SignResponse, 'af');
   const [loading, setLoading] = useState<boolean>(false);
   const { show, AuthTool } = React.useContext(userContext) as UserContextType;
 
   const handleSignUpSubmit = (values: Signup) => {
-    console.log(values);
     setLoading(true);
     dispatch(SignupAction(values));
   };

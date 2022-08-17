@@ -4,8 +4,8 @@ import * as Yup from 'yup';
 import { Grid } from '@mui/material';
 import FormikControl from '../CustomComponent/FormikControl';
 import { PostDoctorInfo } from '../Redux/DoctorSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../store';
 import { IoIosClose } from 'react-icons/io';
 import './CustomPatientDelete.scss';
 interface CountryOption {
@@ -60,19 +60,9 @@ const specialistData: specialistDoctor[] = [
 ];
 
 const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
-  const [image, setImg] = useState<string | ArrayBuffer | null>('');
   const [checkError, setCheckError] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
-  const PostResponseData = useSelector((state: RootState) => state?.Doctors.DoctorInfoResponse);
   const handleSubmit = (data: DoctorInfo) => {
-    // const formData: any = new FormData();
-    // formData.append('doctorName', data?.doctorName);
-    // formData.append('email', data?.email);
-    // formData.append('phoneNumber', data?.phoneNumber);
-    // formData.append('address', data?.address);
-    // formData.append('specialist', data?.specialist);
-    // formData.append('country', data?.country);
-    // formData.append('dob', data?.dob);
     setCheckError(!checkError);
     dispatch(PostDoctorInfo(data));
   };

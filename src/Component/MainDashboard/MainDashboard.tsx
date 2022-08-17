@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import './MainDashboard.scss';
 import { Paper, Divider } from '@mui/material';
 import { AiOutlineMore } from 'react-icons/ai';
 import { FaUserAlt } from 'react-icons/fa';
 import { BsWallet2 } from 'react-icons/bs';
 import { Table } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
+import { ColumnsType } from 'antd/es/table';
 import 'antd/dist/antd.css';
 import IncomeChart from './IncomeChart';
 import Pagination from '@mui/material/Pagination';
@@ -18,7 +18,7 @@ import PaginationHook from '../../Utils/PaginationHook';
 import { Dots } from 'react-activity';
 import 'react-activity/dist/library.css';
 
-interface DataType {
+interface DataTypes {
   patientName: string;
   ageField: number;
   address: string;
@@ -28,45 +28,17 @@ interface DataType {
   dob: string;
   email: string;
 }
+
 const getFullDate = (date: string): string => {
   const dateAndTime = date.split('T');
 
   return dateAndTime[0].split('-').reverse().join('-');
 };
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'patientName',
-    dataIndex: 'patientName',
-    width: 150
-  },
-  {
-    title: 'Age',
-    dataIndex: 'ageField',
-    width: 100
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    width: 150
-  },
-  {
-    title: 'admitDate',
-    dataIndex: 'admitDate',
-    width: 150,
-    render: (date: string) => getFullDate(date)
-  },
-  {
-    title: 'phoneNumber',
-    dataIndex: 'phoneNumber',
-    width: 140
-  }
-];
 
 const MainDashboard = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch<AppDispatch>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [table, setTable] = useState<boolean>(false);
   const GetResponseData = useSelector((state: RootState) => state?.patient.GetPatientResponse);
   useEffect(() => {
     dispatch(GetPatientInfo());
@@ -79,13 +51,42 @@ const MainDashboard = () => {
     setPage(p);
     PaginatedData.jump(p);
   };
+  const columns = useMemo<ColumnsType<DataTypes>>(() => {
+    return [
+      {
+        title: 'patientName',
+        dataIndex: 'patientName',
+        width: 150
+      },
+      {
+        title: 'Age',
+        dataIndex: 'ageField',
+        width: 100
+      },
+      {
+        title: 'Address',
+        dataIndex: 'address',
+        width: 150
+      },
+      {
+        title: 'admitDate',
+        dataIndex: 'admitDate',
+        width: 150,
+        render: (date: string) => getFullDate(date)
+      },
+      {
+        title: 'phoneNumber',
+        dataIndex: 'phoneNumber',
+        width: 140
+      }
+    ];
+  }, []);
   const Loader = () => {
     return <Dots color="#727981" size={32} speed={1} animating={true} />;
   };
   useEffect(() => {
     if (reportsData) {
       setLoading(false);
-      setTable(true);
     }
   }, [reportsData]);
   return (

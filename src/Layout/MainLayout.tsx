@@ -1,6 +1,5 @@
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { RouterData } from '../RouterData';
-import { getStorageDetail } from './StorageDetail';
 import React from 'react';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
@@ -12,6 +11,7 @@ import BreadCrumbComponent from '../CustomComponent/BreadCrumbComponent';
 import { userContext } from '../Context/userContext';
 import { UserContextType } from '../TypeFile/TypeScriptType';
 import Header from '../Component/HeaderComponent/Header';
+import { IconType } from 'react-icons';
 const drawerWidth = 240;
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -31,6 +31,7 @@ function getItem(
     type
   } as MenuItem;
 }
+
 const sidebarRoute = RouterData?.map((item: any) => {
   if (item.layout === '/dashboard') {
     if (!item.submenu) {
@@ -41,11 +42,6 @@ const sidebarRoute = RouterData?.map((item: any) => {
         submenu.push(getItem(e.name, e.key, e.icon));
       });
       return getItem(item.name, item.key, item.icon, submenu);
-      // return getItem(item.name, item.key, item.icon,[
-      //    getItem("AddDoctors", "sub-add1", item.icon),
-      //    getItem("EditDoctor", "sub-add2", item.icon),
-      //    getItem("DeleteDoctor", "sub-add3", item.icon),
-      // ])
     }
   } else {
     return null;
@@ -77,11 +73,9 @@ const MainLayout = () => {
     });
   };
   const getRoutes = () => {
-    const data = getStorageDetail();
     return RouterData?.map((item, index: number) => {
       if (item.layout === '/dashboard') {
         if (!item.submenu) {
-          console.log(item.component, 'harsh');
           return <Route key={index} path={item.layout + item.path} element={item.component} />;
         }
         if (item.submenu) {

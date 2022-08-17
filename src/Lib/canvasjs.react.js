@@ -39,7 +39,7 @@ class CanvasJSChart extends React.Component {
 
     if (this.props.onRef) this.props.onRef(this.chart);
   }
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     //Check if Chart-options has changed and determine if component has to be updated
     return !(nextProps.options === this.options);
   }
@@ -55,7 +55,6 @@ class CanvasJSChart extends React.Component {
     if (this.props.onRef) this.props.onRef(undefined);
   }
   render() {
-    //return React.createElement('div', { id: this.chartContainerId, style: this.containerProps });
     return <div id={this.chartContainerId} style={this.containerProps} />;
   }
 }

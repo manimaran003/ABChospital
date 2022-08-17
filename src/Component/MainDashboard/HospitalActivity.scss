@@ -12,9 +12,6 @@
     position: absolute;
     display: block;
     top: 0;
-  }
-
-  .timeline .timeline-item:after {
     background-color: hsl(0, 0%, 90%);
     left: -38px;
     border-radius: 50%;
@@ -22,6 +19,7 @@
     width: 11px;
     content: "";
   }
+
 
   .text-comment{
     font-size: 14px;

@@ -41,7 +41,6 @@ export const LoginAction = (data: Signin, navigate: any) => async (dispatch: App
       return res.data;
     });
     if (LoginResponse) {
-      console.log(LoginResponse);
       if (LoginResponse.token && LoginResponse.refreshToken) {
         TokenService.setAccessToken(LoginResponse?.token);
         TokenService.setRefreshToken(LoginResponse?.refreshToken);
@@ -74,10 +73,6 @@ export const getUserList = () => async (dispatch: AppDispatch) => {
   } catch (err) {
     console.log(err);
     dispatch(setStatus('error'));
-    // const error = err as any
-    // let { message } = error?.response?.data
-    // console.log(message)
-    // dispatch(setSignupError(message))
   }
 };
 export const reset = () => async (dispatch: AppDispatch) => {

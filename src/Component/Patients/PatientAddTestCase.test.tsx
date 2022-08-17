@@ -41,8 +41,6 @@ const checkRenderCancelButton = () => {
 };
 
 const checkErrorFieldRender = () => {
-  // const imageRequired = screen.getByTestId('test1');
-  // expect(imageRequired).toBeInTheDocument();
   const nameRequired = screen.getByTestId('err1');
   expect(nameRequired).toBeInTheDocument();
   const emailRequired = screen.getByTestId('err2');
@@ -65,16 +63,14 @@ const apiUrl = Constants.BaseUrl + ApiEndpoint.GetPatientInfo;
 
 const fakeUserResponse = { token: [{}] };
 const server = setupServer(
-  rest.get(apiUrl, (req, res, ctx) => {
+  rest.get(apiUrl, (_req, res, ctx) => {
     return res(ctx.json({ data: fakeUserResponse.token }));
   })
 );
 beforeAll(() => server.listen());
 
-// Reset any runtime request handlers we may add during the tests.
 afterEach(() => server.resetHandlers());
 
-// Disable API mocking after the tests are done.
 afterAll(() => server.close());
 
 describe('test api call all patien view scree', () => {
@@ -90,7 +86,7 @@ describe('test api call all patien view scree', () => {
     );
     server.listen();
     await fetch(apiUrl, { method: 'GET' });
-    expect([{}]).toEqual([{}]); // Make an assertion on the result
+    expect([{}]).toEqual([{}]);
   });
 });
 
@@ -136,8 +132,6 @@ describe('render patientAdd Modal', () => {
         </UserProvider>
       </Provider>
     );
-    // const imageText = screen.getByTestId('patientImage', { exact: false });
-    // expect(imageText).toBeInTheDocument();
     const nameText = screen.getByTestId('patientName', { exact: false });
     expect(nameText).toBeInTheDocument();
     const emailText = screen.getByTestId('email', { exact: false });
@@ -184,8 +178,6 @@ describe('render patientAdd Modal', () => {
         </UserProvider>
       </Provider>
     );
-    // const imageText = screen.getByTestId('patientImage', { exact: false });
-    // fireEvent.change(imageText, { target: { value: '' } });
     const nameText = screen.getByTestId('patientName', { exact: false });
     fireEvent.change(nameText, { target: { value: '' } });
     const emailText = screen.getByTestId('email');
@@ -204,10 +196,6 @@ describe('render patientAdd Modal', () => {
     fireEvent.change(ageText, { target: { value: '' } });
     const btn = screen.getByText('save', { exact: false });
     userEvent.click(btn);
-    // await waitFor(() => {
-    //     const imageRequired = screen.getByTestId("test1")
-    //     expect(imageRequired).toHaveTextContent("File is required")
-    // })
     await waitFor(() => {
       const nameRequired = screen.getByTestId('err1');
       expect(nameRequired).toHaveTextContent('name is required');
@@ -373,17 +361,3 @@ describe('test patient delete modal renders', () => {
     expect(btn).toBeInTheDocument();
   });
 });
-
-// describe("check patient View screen rendered",()=>{
-//     test("check patient view rendered",()=>{
-//         render(
-//             <Provider store={store}>
-//             <UserProvider>
-//                 <Router>
-//               <ViewPatients/>
-//               </Router>
-//             </UserProvider>
-//         </Provider>
-//         )
-//     })
-// })

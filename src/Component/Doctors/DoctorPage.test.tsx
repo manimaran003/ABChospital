@@ -11,8 +11,6 @@ import CustomDoctorDelete from '../../Utils/CustomDoctorDelete';
 const handleClose = jest.fn();
 
 const InputCheckRender = () => {
-  // const imageText = screen.getByTestId('doctorImage', { exact: false });
-  // expect(imageText).toBeInTheDocument();
   const nameText = screen.getByTestId('doctorName', { exact: false });
   expect(nameText).toBeInTheDocument();
   const emailText = screen.getByTestId('email', { exact: false });
@@ -29,8 +27,6 @@ const InputCheckRender = () => {
   expect(specialistText).toBeInTheDocument();
 };
 const checkErrorFieldRender = () => {
-  // const imageRequired = screen.getByTestId('test1');
-  // expect(imageRequired).toBeInTheDocument();
   const nameRequired = screen.getByTestId('err1');
   expect(nameRequired).toBeInTheDocument();
   const emailRequired = screen.getByTestId('err2');
@@ -112,8 +108,6 @@ describe('render doctor page screen', () => {
         </UserProvider>
       </Provider>
     );
-    // const imageText = screen.getByTestId('doctorImage', { exact: false });
-    // fireEvent.change(imageText, { target: { value: '' } });
     const nameText = screen.getByTestId('doctorName', { exact: false });
     fireEvent.change(nameText, { target: { value: '' } });
     const emailText = screen.getByTestId('email');
@@ -130,10 +124,6 @@ describe('render doctor page screen', () => {
     fireEvent.change(specialistText, { target: { value: '' } });
     const btn = screen.getByText('save', { exact: false });
     userEvent.click(btn);
-    // await waitFor(() => {
-    //     const imageRequired = screen.getByTestId("test1")
-    //     expect(imageRequired).toHaveTextContent("File is required")
-    // })
     await waitFor(() => {
       const nameRequired = screen.getByTestId('err1');
       expect(nameRequired).toHaveTextContent('name is required');

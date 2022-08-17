@@ -41,7 +41,6 @@ export const GetPatientInfo = () => async (dispatch: AppDispatch) => {
 };
 export const UpdatePatientInfo =
   (id: string, data: PatientModel) => async (dispatch: AppDispatch) => {
-    console.log('update', data);
     try {
       const UpdatePatientResponse = await Api({
         method: 'PATCH',

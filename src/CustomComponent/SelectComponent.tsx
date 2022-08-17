@@ -61,12 +61,12 @@ interface FieldProps {
   error: string;
   helperText: string;
   test: string;
+  value: string;
   options: CountryOption[];
 }
 
-const SelectComponent: React.FC<any> = (props) => {
+const SelectComponent: React.FC<FieldProps> = (props) => {
   const { options, label, error, helperText, name, test, value, ...rest } = props;
-  console.log(value);
   return (
     <>
       <InputLabel
@@ -81,9 +81,10 @@ const SelectComponent: React.FC<any> = (props) => {
         sx={{ width: '100%', border: `${error ? '1px solid red' : ''}` }}
         input={<BootstrapInput />}
         name={name}
+        defaultValue=""
         inputProps={{ 'data-testid': name }}
         {...rest}
-        defaultValue={'MANI'}>
+        value={value}>
         {options?.map((opt: CountryOption) => (
           <MenuItem value={opt.data} key={opt.id}>
             {opt.key}

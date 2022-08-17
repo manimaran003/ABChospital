@@ -1,11 +1,6 @@
 const setSignupUser = (user: string) => {
-  console.log(JSON.stringify(user));
   sessionStorage.setItem('user', JSON.stringify(user));
 };
-// const setLoginUser=(logged:string)=>{
-//     console.log(JSON.stringify(logged));
-//     localStorage.setItem("logged", JSON.stringify(logged));
-// }
 const setAccessToken = (user: string) => {
   sessionStorage.setItem('accessToken', JSON.stringify(user));
 };
@@ -14,9 +9,7 @@ const setRefreshToken = (user: string) => {
 };
 const UpdateAccessToken = (token: string) => {
   let user = JSON.parse(sessionStorage.getItem('accessToken') || '{}');
-  console.log('older access token', user);
   user = token;
-  console.log('user new access token', user);
   sessionStorage.setItem('accessToken', JSON.stringify(user));
 };
 const getAccessToken = () => JSON.parse(sessionStorage.getItem('accessToken') || '{}');

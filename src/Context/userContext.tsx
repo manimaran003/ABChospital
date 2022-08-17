@@ -28,14 +28,12 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     country: '',
     _id: ''
   });
-  const [show, setShow] = useState<boolean>(true);
+  const [show, setShow] = useState<boolean>(false);
   const [hideSidebar, sethideBar] = useState<boolean>(true);
   const editModal = (data: EditType) => {
-    console.log('data', data);
     setEdited(data);
   };
   const editDoctorModal = (data: DoctorEditType) => {
-    console.log('data', data);
     setEditedDoctor(data);
   };
   const AuthTool = (state: boolean): void => {

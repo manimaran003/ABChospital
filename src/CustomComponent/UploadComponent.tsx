@@ -1,4 +1,4 @@
-import { TextFieldProps, Button, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import defaultImg from '../Assets/default1.png';

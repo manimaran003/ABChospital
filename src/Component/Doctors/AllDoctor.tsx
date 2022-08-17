@@ -38,7 +38,6 @@ const AllDoctor = () => {
   };
   const GetDoctorData = useSelector((state: RootState) => state?.Doctors.GetDoctorResponse);
   const reportsData = GetDoctorData?.data;
-  console.log(reportsData);
   const getAllDoctorProfiles = useCallback(async () => {
     try {
       dispatch(GetDoctorInfo());
@@ -104,21 +103,17 @@ const AllDoctor = () => {
                             </Link>
                             <div>
                               <Tooltip title="Edit" placement="top">
-                                <IconButton>
+                                <IconButton onClick={() => handleEditProfile(item)}>
                                   <BiEdit
                                     className="icon--edit"
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModalEdit"
-                                    onClick={() => handleEditProfile(item)}
                                   />
                                 </IconButton>
                               </Tooltip>
                               <Tooltip title="Delete" placement="top">
-                                <IconButton>
-                                  <AiOutlineDelete
-                                    className="icon--delete"
-                                    onClick={() => handleDeleteProfile(item)}
-                                  />
+                                <IconButton onClick={() => handleDeleteProfile(item)}>
+                                  <AiOutlineDelete className="icon--delete" />
                                 </IconButton>
                               </Tooltip>
                             </div>

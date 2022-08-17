@@ -43,20 +43,9 @@ const CountryOptions: CountryOption[] = [
 ];
 
 const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
-  // const [image, setImg] = useState<string | ArrayBuffer | null>('');
-
   const [checkError, setCheckError] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
-  const handleSubmit = (data: PatientModel | any) => {
-    // const formdata: any = new FormData();
-    // formdata.append('dob', data?.dob);
-    // formdata.append('country', data?.country);
-    // formdata.append('address', data?.address);
-    // formdata.append('admitDate', data?.admitDate);
-    // formdata.append('phoneNumber', data?.phoneNumber);
-    // formdata.append('email', data?.email);
-    // formdata.append('ageField', data?.ageField);
-    // formdata.append('patientName', data?.patientName);
+  const handleSubmit = (data: PatientModel) => {
     setCheckError(true);
     dispatch(PostPatientInfo(data));
   };

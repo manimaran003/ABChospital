@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './Header.scss';
 import { BiCalendar } from 'react-icons/bi';
 import { BsChat } from 'react-icons/bs';
@@ -10,10 +10,8 @@ import { TiMessages } from 'react-icons/ti';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
-import TokenService from '../../Constants/token.service';
 const Header: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [image, setImage] = useState<string>('');
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -26,9 +24,6 @@ const Header: React.FC = () => {
     navigate('/login');
     sessionStorage.clear();
   };
-  useEffect(() => {
-    setImage(TokenService.getUserImage());
-  }, [setImage]);
   return (
     <div>
       <div className="container-fluid mainHeader d-flex ">
@@ -75,7 +70,7 @@ const Header: React.FC = () => {
             <div>
               <Avatar
                 alt="Remy Sharp"
-                src={image}
+                src=""
                 sx={{ width: 35, height: 35, display: 'flex', justifyContent: 'center' }}
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"

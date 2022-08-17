@@ -41,7 +41,6 @@ export const GetDoctorInfo = () => async (dispatch: AppDispatch) => {
       return res?.data?.doctorUser;
     });
     if (GetDoctorResponse) {
-      console.log(GetDoctorResponse);
       dispatch(setDoctorInfo(GetDoctorResponse));
     }
   } catch (err) {
@@ -55,12 +54,10 @@ export const UpdateDoctorInfo = (id: string, data: DoctorInfo) => async (dispatc
       url: Constants.BaseUrl + ApiEndpoint.UpdateDoctorInfo + `/${id}`,
       data
     }).then((res) => {
-      console.log(res, 'response');
       toast.success(res?.data?.message);
       return res?.data;
     });
     if (UpdateDoctorResponse) {
-      console.log(UpdateDoctorResponse);
       dispatch(setUpdateResponse(UpdateDoctorResponse));
     }
   } catch (err) {

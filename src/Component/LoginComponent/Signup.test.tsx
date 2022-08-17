@@ -17,7 +17,7 @@ describe('to test signup page', () => {
         </Router>
       </Provider>
     );
-    const text = screen.getByText('Create Account', { exact: false });
+    const text = screen.getByText(/^Create Account$/);
     expect(text).toBeInTheDocument();
   });
 
@@ -154,31 +154,4 @@ describe('to test signup page', () => {
       );
     });
   });
-
-  // test("formik submit check all fields are sended", async () => {
-  //     const handleSubmit = jest.fn()
-  //     render(
-  //         <Provider store={store}>
-  //             <UserProvider>
-  //                 <SignupPage onSubmit={handleSubmit} />
-  //             </UserProvider>
-  //         </Provider>
-  //     )
-  //     const emailText = screen.getByTestId('email', { exact: false })
-  //     const nameText = screen.getByTestId('username', { exact: false })
-  //     const pwdText = screen.getByTestId('password', { exact: false })
-  //     userEvent.type(emailText, "cmmaran102@gmail.com")
-  //     userEvent.type(nameText, "manimaran")
-  //     userEvent.type(pwdText, "Github@1999")
-  //     const btn = screen.getByText("Sign up", { exact: false })
-  //     userEvent.click(btn)
-  //     await waitFor(() => {
-  //         expect(handleSubmit).toHaveBeenCalledWith({
-  //             email: 'john.dee@someemail.com',
-  //             username: 'manimaran',
-  //             password: 'Github@1999',
-  //         })
-  //     })
-
-  // })
 });

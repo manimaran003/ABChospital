@@ -4,19 +4,14 @@ import * as Yup from 'yup';
 import { Grid } from '@mui/material';
 import FormikControl from '../CustomComponent/FormikControl';
 import { UpdatePatientInfo } from '../Redux/PatientSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../store';
 import { UserContextType, PatientModel } from '../TypeFile/TypeScriptType';
 import { userContext } from '../Context/userContext';
 import moment from 'moment';
 import { IoIosClose } from 'react-icons/io';
 import './CustomPatientDelete.scss';
 interface CountryOption {
-  id: string;
-  key: string;
-  data: string;
-}
-interface specialistDoctor {
   id: string;
   key: string;
   data: string;
@@ -42,9 +37,6 @@ const CountryOptions: CountryOption[] = [
 const CustomPatientEditModal: React.FC<{ id: string }> = ({ id }) => {
   const { EditedData } = React.useContext(userContext) as UserContextType;
   const [checkError, setCheckError] = useState<boolean>(false);
-  const GetPateintData = useSelector((state: RootState) => state?.patient.GetOneResponse);
-  const reportsData = GetPateintData?.data;
-  console.log('reports', reportsData);
   const dispatch = useDispatch<AppDispatch>();
 
   const InnerForm = (props: FormikProps<PatientModel>) => {
@@ -177,9 +169,12 @@ const CustomPatientEditModal: React.FC<{ id: string }> = ({ id }) => {
       </div>
     );
   };
-  const convertToDate = (date: string) => {
-    console.log(moment(date).format('L'));
-    return moment(date).format('L');
+  const convertToDate = (date: string): string => {
+    const format1 = 'YYYY-MM-DD';
+    const date1 = new Date(date);
+
+    const dateTime1 = moment(date1).format(format1);
+    return dateTime1;
   };
   const MyForm = withFormik({
     mapPropsToValues: () => {
@@ -189,13 +184,12 @@ const CustomPatientEditModal: React.FC<{ id: string }> = ({ id }) => {
         address: EditedData?.address,
         phoneNumber: EditedData?.phoneNumber,
         country: EditedData?.country,
-        dob: EditedData?.dob,
+        dob: convertToDate(EditedData?.dob),
         ageField: EditedData?.ageField,
         admitDate: convertToDate(EditedData?.admitDate)
       };
     },
-    handleSubmit: (values) => {
-      console.log(values);
+    handleSubmit: (values: PatientModel) => {
       setCheckError(!checkError);
       dispatch(UpdatePatientInfo(EditedData?._id, values));
     },

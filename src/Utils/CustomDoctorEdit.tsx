@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, withFormik, FormikProps } from 'formik';
 import * as Yup from 'yup';
+import moment from 'moment';
 import { Grid } from '@mui/material';
 import FormikControl from '../CustomComponent/FormikControl';
 import { useDispatch } from 'react-redux';
@@ -55,6 +56,13 @@ const CustomDoctorEdit: React.FC<{ id: string }> = ({ id }) => {
   const { EditedDoctor } = React.useContext(userContext) as UserContextType;
   const [checkError, setCheckError] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
+  const convertToDate = (date: string) => {
+    const format1 = 'YYYY-MM-DD';
+    const date1 = new Date(date);
+
+    const dateTime1 = moment(date1).format(format1);
+    return dateTime1;
+  };
 
   const InnerForm = (props: FormikProps<DoctorInfo>) => {
     const { values, touched, errors, handleBlur, handleChange } = props;
@@ -177,13 +185,12 @@ const CustomDoctorEdit: React.FC<{ id: string }> = ({ id }) => {
         doctorName: EditedDoctor?.doctorName,
         address: EditedDoctor?.address,
         phoneNumber: EditedDoctor?.phoneNumber,
-        dob: EditedDoctor?.dob,
+        dob: convertToDate(EditedDoctor?.dob),
         specialist: EditedDoctor?.specialist,
         country: EditedDoctor?.country
       };
     },
     handleSubmit: (values) => {
-      console.log(values);
       setCheckError(!checkError);
       setCheckError(!checkError);
       dispatch(UpdateDoctorInfo(EditedDoctor?._id, values));

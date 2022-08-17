@@ -121,9 +121,6 @@ const ViewPatients = () => {
                   <TabPane tab="Activity" key="1">
                     <HospitalActivity activities={activity} reportsData={PatientActivity} />
                   </TabPane>
-                  <TabPane tab="Billing" key="2">
-                    Content of Tab Pane 2
-                  </TabPane>
                 </Tabs>
               </div>
             </div>
