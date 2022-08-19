@@ -59,6 +59,7 @@ export const UpdateDoctorInfo = (id: string, data: DoctorInfo) => async (dispatc
     });
     if (UpdateDoctorResponse) {
       dispatch(setUpdateResponse(UpdateDoctorResponse));
+      dispatch(GetDoctorInfo());
     }
   } catch (err) {
     console.log(err);

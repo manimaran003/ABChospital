@@ -52,6 +52,7 @@ export const UpdatePatientInfo =
       });
       if (UpdatePatientResponse) {
         dispatch(updatePatientResponse(UpdatePatientResponse));
+        dispatch(GetPatientInfo());
       }
     } catch (err) {
       console.log(err);
