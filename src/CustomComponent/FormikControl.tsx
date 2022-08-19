@@ -2,6 +2,7 @@ import React from 'react';
 import InputComponent from './InputComponent';
 import SelectComponent from './SelectComponent';
 import { TextFieldProps } from '@mui/material';
+import UploadComponent from './UploadComponent';
 
 interface FieldProps {
   label: string;
@@ -22,6 +23,8 @@ const FormikControl: React.FC<FieldProps | TextFieldProps | any> = (props) => {
       return <InputComponent {...rest} />;
     case 'select':
       return <SelectComponent {...rest} />;
+    case 'upload':
+      return <UploadComponent {...rest} />;
     default:
       return null;
   }

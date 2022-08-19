@@ -3,7 +3,7 @@ import { Paper, Card, CardMedia, CardContent, Divider, Box } from '@mui/material
 import { Tabs } from 'antd';
 import './ViewPatients.scss';
 import HospitalActivity from '../MainDashboard/HospitalActivity';
-import { setup } from '../../TypeFile/TypeScriptType';
+import { Setup } from '../../TypeFile/TypeScriptType';
 
 const ViewPatients = () => {
   const { TabPane } = Tabs;
@@ -13,7 +13,7 @@ const ViewPatients = () => {
   };
 
   const activity = 'patientActivities';
-  const PatientActivity: setup[] = [
+  const PatientActivity: Setup[] = [
     {
       id: '21321321',
       username: 'jahnwi',
@@ -85,12 +85,7 @@ const ViewPatients = () => {
           <Paper className="view--paper" elevation={1}>
             <div className="profile--card d-flex flex-grow-1  h-100 w-100">
               <Card className="w-100">
-                <CardMedia
-                  component="img"
-                  height="50%"
-                  image={location?.state.patientImage}
-                  alt="green iguana"
-                />
+                <CardMedia component="img" height="50%" image="" alt="green iguana" />
                 <CardContent className="d-flex flex-grow-1 flex-column p-2">
                   <div>
                     <Box className="p-1 card--header">

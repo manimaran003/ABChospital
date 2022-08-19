@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import PublicRoute from './PubicRoute';
+import PublicRoute from './PublicRoute';
 import ProtectedRoute from './ProtectedRoute';
 import MainLayout from './MainLayout';
 import InnerContent from './InnerContent';

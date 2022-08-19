@@ -109,7 +109,7 @@ const SignupPage = () => {
                             data-testid="role"
                             aria-label="Default select example">
                             <option selected>select role</option>
-                            <option value="doctor">doctor</option>
+                            <option value="doctor">admin</option>
                           </select>
                         </div>
                         <p className="error-text" data-testid="error-test4">

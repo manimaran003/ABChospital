@@ -78,16 +78,16 @@ export type UserContextType = {
   MobileDrawer: (state: boolean) => void;
 };
 
-export interface numericValue {
+export interface NumericValue {
   name: string;
   amount: string;
 }
 
-export interface tableSetup {
+export interface TableSetup {
   tableHeader: string;
-  data: numericValue[];
+  data: NumericValue[];
 }
-export interface timelineSetup {
+export interface TimelineSetup {
   date: string;
   reportHeading: string;
   bloodReport: boolean;
@@ -96,10 +96,10 @@ export interface timelineSetup {
   surgeryReport: boolean;
   images: Array<string>;
   description: string;
-  reportTable: tableSetup[];
+  reportTable: TableSetup[];
 }
-export interface setup {
+export interface Setup {
   id: string;
   username: string;
-  TimeLine: timelineSetup[];
+  TimeLine: TimelineSetup[];
 }

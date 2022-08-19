@@ -11,7 +11,6 @@ import BreadCrumbComponent from '../CustomComponent/BreadCrumbComponent';
 import { userContext } from '../Context/userContext';
 import { UserContextType } from '../TypeFile/TypeScriptType';
 import Header from '../Component/HeaderComponent/Header';
-import { IconType } from 'react-icons';
 const drawerWidth = 240;
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -132,13 +131,6 @@ const MainLayout = () => {
           defaultSelectedKeys: ['View Dcotor', 'Doctor']
         };
       }
-      case '/dashboard/Products': {
-        return {
-          defaultOpenKeys: ['products'],
-          defaultSelectedKeys: ['Products']
-        };
-      }
-
       default: {
         return {
           defaultOpenKeys: [],

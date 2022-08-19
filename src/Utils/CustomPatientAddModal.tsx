@@ -168,7 +168,6 @@ const CustomPatientAddModal: React.FC<{ id: string }> = ({ id }) => {
                       </Grid>
                     </Grid>
                   </div>
-
                   <div className="d-flex align-items-center justify-content-center gap-3 mt-4">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                       Cancel

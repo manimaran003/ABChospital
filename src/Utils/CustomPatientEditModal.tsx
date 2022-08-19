@@ -40,7 +40,7 @@ const CustomPatientEditModal: React.FC<{ id: string }> = ({ id }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const InnerForm = (props: FormikProps<PatientModel>) => {
-    const { values, touched, errors, handleBlur, handleChange } = props;
+    const { values, touched, errors, handleBlur, handleChange, setFieldValue } = props;
     return (
       <div className="modal-body p-3">
         <Form>
@@ -186,7 +186,8 @@ const CustomPatientEditModal: React.FC<{ id: string }> = ({ id }) => {
         country: EditedData?.country,
         dob: convertToDate(EditedData?.dob),
         ageField: EditedData?.ageField,
-        admitDate: convertToDate(EditedData?.admitDate)
+        admitDate: convertToDate(EditedData?.admitDate),
+        patientImage: ''
       };
     },
     handleSubmit: (values: PatientModel) => {

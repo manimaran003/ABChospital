@@ -13,7 +13,7 @@ interface CountryOption {
   key: string;
   data: string;
 }
-interface specialistDoctor {
+interface SpecialistDoctor {
   id: string;
   key: string;
   data: string;
@@ -53,7 +53,7 @@ const CountryOptions: CountryOption[] = [
   { id: '3', key: 'Kerala', data: 'Kerala' }
 ];
 
-const specialistData: specialistDoctor[] = [
+const specialistData: SpecialistDoctor[] = [
   { id: '1', key: 'Dentist', data: 'Dentist' },
   { id: '2', key: 'Gaselogist', data: 'Gaselogist' },
   { id: '3', key: 'Neuro', data: 'Neuro' }

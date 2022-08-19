@@ -3,8 +3,8 @@ import './HospitalActivity.scss';
 import { AiOutlineLike } from 'react-icons/ai';
 import { FaRegComment } from 'react-icons/fa';
 import { Card, CardMedia, Divider } from '@mui/material';
-import { numericValue, setup, tableSetup, timelineSetup } from '../../TypeFile/TypeScriptType';
-const HospitalActivity: React.FC<{ activities: string; reportsData: setup[] }> = (props) => {
+import { NumericValue, Setup, TableSetup, TimelineSetup } from '../../TypeFile/TypeScriptType';
+const HospitalActivity: React.FC<{ activities: string; reportsData: Setup[] }> = (props) => {
   return (
     <div>
       {props.activities === 'HospitalActivity' ? (
@@ -38,8 +38,8 @@ const HospitalActivity: React.FC<{ activities: string; reportsData: setup[] }> =
           <section className="">
             <ul className="timeline">
               {props.reportsData.length > 0 &&
-                props.reportsData.map((val: setup) => {
-                  return val.TimeLine.map((item: timelineSetup) => {
+                props.reportsData.map((val: Setup) => {
+                  return val.TimeLine.map((item: TimelineSetup) => {
                     return (
                       <>
                         <li className="timeline-item mb-5  d-flex align-items-start flex-column">
@@ -71,14 +71,14 @@ const HospitalActivity: React.FC<{ activities: string; reportsData: setup[] }> =
                             </div>
                             {item?.reportTable.length > 0 && (
                               <div className="report--table w-100 d-flex gap-3 mt-4">
-                                {item?.reportTable?.map((itm: tableSetup, index: number) => {
+                                {item?.reportTable?.map((itm: TableSetup, index: number) => {
                                   return (
                                     <div className="reports" key={index}>
                                       <div className="d-flex justify-content-start">
                                         {itm?.tableHeader}
                                       </div>
                                       <Divider />
-                                      {itm?.data?.map((Value: numericValue, indexNo: number) => {
+                                      {itm?.data?.map((Value: NumericValue, indexNo: number) => {
                                         return (
                                           <div key={indexNo}>
                                             <div className="d-flex justify-content-between gap-5">
