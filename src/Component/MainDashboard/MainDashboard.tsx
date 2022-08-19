@@ -100,7 +100,7 @@ const MainDashboard = () => {
               </div>
               <div className="d-flex flex-column align-items-start">
                 <span className="brandData-head">Total Patient</span>
-                <span className="brandData-no">16</span>
+                <span className="brandData-no">{reportsData.length}</span>
               </div>
             </div>
             <Divider className="brandData-muiDivider" />

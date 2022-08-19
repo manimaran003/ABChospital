@@ -86,9 +86,9 @@ const AllDoctor = () => {
                             <Link to={`/dashboard/ViewDoctor`} state={item}>
                               <div>
                                 <div className="d-flex justify-content-center p-3">
-                                  <div className="rounded--image">
+                                  {/* <div className="rounded--image">
                                     <img className="" src="" alt="doc" />
-                                  </div>
+                                  </div> */}
                                 </div>
                                 <div className="px-6 py-4 card--content">
                                   <div className="font-bold text-xl card--content-name">
