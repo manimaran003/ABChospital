@@ -39,19 +39,8 @@ const ViewDoctor = () => {
                 <section className="p-3 activities">
                   <ul className="timeline">
                     <li className="timeline-item mb-5  d-flex align-items-start flex-column">
-                      <p className="text-date">20-04-2018 - Today</p>
-                      <h5 className="mb-2 fw-bold">A Brief History Of Anesthetics</h5>
-                      <p className="text-name">
-                        <span>Elisse Joson</span> San Francisco, CA
-                      </p>
-                      <p className="text-comment">
-                        I&apos;m speaking with myself, number one, because I have a very good brain
-                        and I&apos;ve said a lot of things.
-                      </p>
-                    </li>
-                    <li className="timeline-item mb-5  d-flex align-items-start flex-column">
-                      <p className="text-date">20-04-2018 - Today</p>
-                      <h5 className="mb-2 fw-bold">A Brief History Of Anesthetics</h5>
+                      <p className="text-date">12-04-2018 - Today</p>
+                      <h5 className="mb-2 fw-bold">Heart operation</h5>
                       <p className="text-name">
                         <span>Elisse Joson</span> San Francisco, CA
                       </p>
@@ -62,6 +51,17 @@ const ViewDoctor = () => {
                     </li>
                     <li className="timeline-item mb-5  d-flex align-items-start flex-column">
                       <p className="text-date">20-04-2018 - Today</p>
+                      <h5 className="mb-2 fw-bold">Brain Tumor cases</h5>
+                      <p className="text-name">
+                        <span>Elisse Joson</span> San Francisco, CA
+                      </p>
+                      {/* <p className="text-comment">
+                        I&apos;m speaking with myself, number one, because I have a very good brain
+                        and I&apos;ve said a lot of things.
+                      </p> */}
+                    </li>
+                    <li className="timeline-item mb-5  d-flex align-items-start flex-column">
+                      <p className="text-date">11-04-2018 - Today</p>
                       <h5 className="mb-2 fw-bold">A Brief History Of Anesthetics</h5>
                       <p className="text-name">
                         <span>Elisse Joson</span> San Francisco, CA

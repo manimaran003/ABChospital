@@ -16,7 +16,8 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     email: '',
     address: '',
     phoneNumber: '',
-    _id: ''
+    _id: '',
+    patientImage: ''
   });
   const [EditedDoctor, setEditedDoctor] = useState<DoctorEditType>({
     email: '',
@@ -26,7 +27,8 @@ const UserProvider: React.FC<Props> = ({ children }) => {
     dob: '',
     specialist: '',
     country: '',
-    _id: ''
+    _id: '',
+    doctorImage: ''
   });
   const [show, setShow] = useState<boolean>(false);
   const [hideSidebar, sethideBar] = useState<boolean>(true);

@@ -15,7 +15,7 @@ const HospitalActivity: React.FC<{ activities: string; reportsData: Setup[] }> =
                 <p className="text-date">20-04-2018 - Today</p>
                 <h5 className="mb-2 fw-bold">A Brief History Of Anesthetics</h5>
                 <p className="text-name">
-                  <span>Elisse Joson</span> San Francisco, CA
+                  <span>Dharmaraj</span> San Francisco, CA
                 </p>
                 <p className="text-comment">
                   I&apos;m speaking with myself, number one, because I have a very good brain and

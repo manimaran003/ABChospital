@@ -46,7 +46,7 @@ const AllDoctor = () => {
     }
   }, [dispatch]);
   useEffect(() => {
-    if (reportsData) {
+    if (reportsData.length > 0) {
       setLoading(false);
     }
   }, [reportsData]);
@@ -61,7 +61,7 @@ const AllDoctor = () => {
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
-              <div className="w-100 h-100">
+              <div className="w-100 h-100 card--shadow">
                 <div className="w-48 h-100 rounded overflow-hidden shadow-lg d-flex justify-content-center align-items-center">
                   <div className="d-flex justify-content-center p-3 flex-column align-items-center">
                     <div>
@@ -75,55 +75,61 @@ const AllDoctor = () => {
               </div>
               <CustomAddModal id={'exampleModal'} />
             </Grid>
-            {loading && <Loader />}
-            {reportsData?.length > 0
-              ? reportsData?.map((item: DoctorProfile) => {
-                  return (
-                    <>
-                      <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
-                        <div className="w-100" key={item.empId}>
-                          <div className="w-48 rounded overflow-hidden shadow-lg">
-                            <Link to={`/dashboard/ViewDoctor`} state={item}>
-                              <div>
-                                <div className="d-flex justify-content-center p-3">
-                                  {/* <div className="rounded--image">
-                                    <img className="" src="" alt="doc" />
-                                  </div> */}
-                                </div>
-                                <div className="px-6 py-4 card--content">
-                                  <div className="font-bold text-xl card--content-name">
-                                    {item?.doctorName}
-                                  </div>
-                                  <span className="card--content-role">{item?.specialist}</span>
-                                  <div>
-                                    <p className="card--content-address mt-2">{item.address}</p>
-                                  </div>
+            {/* {loading && <Loader />} */}
+            {reportsData?.length !== 0 ? (
+              reportsData?.map((item: DoctorProfile) => {
+                return (
+                  <>
+                    <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
+                      <div className="w-100 card--shadow" key={item.empId}>
+                        <div className="w-48 rounded overflow-hidden shadow-lg">
+                          <Link to={`/dashboard/ViewDoctor`} state={item}>
+                            <div>
+                              <div className="d-flex justify-content-center p-3">
+                                <div className="rounded--image">
+                                  <img className="" src={item.doctorImage} alt="doc" />
                                 </div>
                               </div>
-                            </Link>
-                            <div>
-                              <Tooltip title="Edit" placement="top">
-                                <IconButton onClick={() => handleEditProfile(item)}>
-                                  <BiEdit
-                                    className="icon--edit"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModalEdit"
-                                  />
-                                </IconButton>
-                              </Tooltip>
-                              <Tooltip title="Delete" placement="top">
-                                <IconButton onClick={() => handleDeleteProfile(item)}>
-                                  <AiOutlineDelete className="icon--delete" />
-                                </IconButton>
-                              </Tooltip>
+                              <div className="px-6 py-4 card--content">
+                                <div className="font-bold text-xl card--content-name">
+                                  {item?.doctorName}
+                                </div>
+                                <span className="card--content-role">{item?.specialist}</span>
+                                <div>
+                                  <p className="card--content-address mt-2">{item.address}</p>
+                                </div>
+                              </div>
                             </div>
+                          </Link>
+                          <div>
+                            <Tooltip title="Edit" placement="top">
+                              <IconButton onClick={() => handleEditProfile(item)}>
+                                <BiEdit
+                                  className="icon--edit"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModalEdit"
+                                />
+                              </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Delete" placement="top">
+                              <IconButton onClick={() => handleDeleteProfile(item)}>
+                                <AiOutlineDelete className="icon--delete" />
+                              </IconButton>
+                            </Tooltip>
                           </div>
                         </div>
-                      </Grid>
-                    </>
-                  );
-                })
-              : 'no doctor data'}
+                      </div>
+                    </Grid>
+                  </>
+                );
+              })
+            ) : (
+              // <div className="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
+              //   <IoMdMan className="error--icon" />
+              //   <p className="font">no any doctors</p>
+              // </div>
+              <Loader />
+            )}
           </Grid>
         </Grid>
       </Grid>

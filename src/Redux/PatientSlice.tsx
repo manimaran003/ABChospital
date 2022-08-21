@@ -4,8 +4,18 @@ import Api from '../Constants/Instance';
 import { AppDispatch } from '../store';
 import { PatientModel } from '../TypeFile/TypeScriptType';
 import { toast } from 'react-toastify';
-
+interface PatientInfo {
+  patientName: string;
+  email: string;
+  address: string;
+  phoneNumber: string;
+  country: string;
+  dob: string;
+  ageField: number;
+  admitDate: string;
+}
 export const PostPatientInfo = (data: PatientModel) => {
+  console.log(data);
   return async (dispatch: AppDispatch) => {
     try {
       const PatientInfoResponse = await Api({
@@ -13,6 +23,7 @@ export const PostPatientInfo = (data: PatientModel) => {
         url: Constants.BaseUrl + ApiEndpoint.PostPatientInfo,
         data
       }).then((res) => {
+        toast.success('patient Suucessfully added');
         return res.data;
       });
       if (PatientInfoResponse) {
@@ -40,7 +51,7 @@ export const GetPatientInfo = () => async (dispatch: AppDispatch) => {
   }
 };
 export const UpdatePatientInfo =
-  (id: string, data: PatientModel) => async (dispatch: AppDispatch) => {
+  (id: string, data: PatientInfo) => async (dispatch: AppDispatch) => {
     try {
       const UpdatePatientResponse = await Api({
         method: 'PATCH',

@@ -11,6 +11,7 @@ import IncomeChart from './IncomeChart';
 import Pagination from '@mui/material/Pagination';
 import VisitorStatistics from './VisitorStatistics';
 import HospitalActivity from './HospitalActivity';
+import { GetDoctorInfo } from '../../Redux/DoctorSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetPatientInfo } from '../../Redux/PatientSlice';
 import { AppDispatch, RootState } from '../../store';
@@ -40,8 +41,11 @@ const MainDashboard = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [loading, setLoading] = useState<boolean>(true);
   const GetResponseData = useSelector((state: RootState) => state?.patient.GetPatientResponse);
+  const GetDoctorData = useSelector((state: RootState) => state?.Doctors.GetDoctorResponse);
+  const DoctorsData = GetDoctorData?.data;
   useEffect(() => {
     dispatch(GetPatientInfo());
+    dispatch(GetDoctorInfo());
   }, [dispatch]);
   const reportsData = GetResponseData?.data;
   const PerPage = 5;
@@ -109,7 +113,7 @@ const MainDashboard = () => {
                 <FaUserAlt className="brandData-icon" />
               </div>
               <div className="d-flex flex-column align-items-start">
-                <span className="brandData-head">Operations</span>
+                <span className="brandData-head">RoomsAvailable</span>
                 <span className="brandData-no">21</span>
               </div>
             </div>
@@ -121,7 +125,7 @@ const MainDashboard = () => {
               </div>
               <div className="d-flex flex-column align-items-start">
                 <span className="brandData-head">Total Doctors</span>
-                <span className="brandData-no">3</span>
+                <span className="brandData-no">{DoctorsData?.length}</span>
               </div>
             </div>
             <Divider className="brandData-muiDivider" />

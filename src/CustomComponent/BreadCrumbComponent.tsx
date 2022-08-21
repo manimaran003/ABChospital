@@ -79,7 +79,7 @@ const BreadCrumbComponent: React.FC<{ pathname: string }> = ({ pathname }) => {
           <div className="d-flex flex-column">
             <div>
               <Breadcrumbs aria-label="breadcrumb">
-                <Link href="#">
+                <Link href="/dashboard/maindashboard">
                   <AiOutlineHome className="bread-icon" />
                 </Link>
                 {bread?.route?.map((val: string, index: number) => {

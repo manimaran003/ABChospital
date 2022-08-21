@@ -26,6 +26,7 @@ interface DoctorInfo {
   dob: string;
   specialist: string;
   country: string;
+  doctorImage: string;
 }
 const signinSchema = Yup.object().shape({
   email: Yup.string().email().required('Enter valid email-id'),
@@ -34,7 +35,8 @@ const signinSchema = Yup.object().shape({
   phoneNumber: Yup.string().required('phone number is required'),
   country: Yup.string().required('country is required'),
   specialist: Yup.string().required('speciality is required'),
-  dob: Yup.string().required('Dob is required')
+  dob: Yup.string().required('Dob is required'),
+  doctorImage: Yup.mixed().required('File is required')
 });
 
 const initial = {
@@ -44,7 +46,8 @@ const initial = {
   phoneNumber: '',
   specialist: '',
   country: '',
-  dob: ''
+  dob: '',
+  doctorImage: ''
 };
 
 const CountryOptions: CountryOption[] = [
@@ -61,10 +64,20 @@ const specialistData: SpecialistDoctor[] = [
 
 const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
   const [checkError, setCheckError] = useState<boolean>(false);
+  const [image, setImg] = useState<string | ArrayBuffer | null>('');
   const dispatch = useDispatch<AppDispatch>();
   const handleSubmit = (data: DoctorInfo) => {
+    const formData: any = new FormData();
+    formData.append('doctorName', data?.doctorName);
+    formData.append('email', data?.email);
+    formData.append('phoneNumber', data?.phoneNumber);
+    formData.append('address', data?.address);
+    formData.append('specialist', data?.specialist);
+    formData.append('country', data?.country);
+    formData.append('doctorImage', data?.doctorImage);
+    formData.append('dob', data?.dob);
     setCheckError(!checkError);
-    dispatch(PostDoctorInfo(data));
+    dispatch(PostDoctorInfo(formData));
   };
   return (
     <div className="modal fade" id={id} aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,6 +97,30 @@ const CustomAddModal: React.FC<{ id: string }> = ({ id }) => {
               {(formik) => (
                 <Form onSubmit={formik.handleSubmit}>
                   <div>
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <FormikControl
+                          control="upload"
+                          name="doctorImage"
+                          type="file"
+                          onChange={(event: any) => {
+                            formik.setFieldValue('doctorImage', event.target.files[0]);
+                            const reader = new FileReader();
+
+                            reader.onload = () => {
+                              const images = reader.result;
+                              setImg(images);
+                            };
+                            if (event.target.files[0]) {
+                              reader.readAsDataURL(event.target.files[0]);
+                            }
+                          }}
+                          error={formik.errors.doctorImage}
+                          imgData={image}
+                          test="test1"
+                        />
+                      </Grid>
+                    </Grid>
                     <Grid container spacing={2}>
                       <Grid item xs={6}>
                         <FormikControl

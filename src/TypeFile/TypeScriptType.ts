@@ -19,6 +19,7 @@ export interface DoctorProfile {
   country: string;
   email: string;
   phoneNumber: string;
+  doctorImage: string;
   __v: number;
 }
 
@@ -32,6 +33,7 @@ export interface DataType {
   dob: string;
   email: string;
   _id: string;
+  patientImage: string;
 }
 export interface EditType {
   patientName: string;
@@ -43,10 +45,12 @@ export interface EditType {
   dob: string;
   email: string;
   _id: string;
+  patientImage: string;
 }
 
 export interface DoctorEditType {
   email: string;
+  doctorImage: string;
   doctorName: string;
   address: string;
   phoneNumber: string;
@@ -65,6 +69,7 @@ export interface PatientModel {
   phoneNumber: string;
   dob: string;
   email: string;
+  patientImage: string;
 }
 
 export type UserContextType = {

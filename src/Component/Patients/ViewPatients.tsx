@@ -19,43 +19,43 @@ const ViewPatients = () => {
       username: 'jahnwi',
       TimeLine: [
         {
-          date: '01 Jun 2018',
+          date: '01 Aug 2024',
           reportHeading: 'Blood Report',
           bloodReport: true,
           admitReport: false,
           checkupReport: false,
           surgeryReport: false,
           images: [],
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+          description: 'wbc count is less than 12 ',
           reportTable: [
             {
               tableHeader: 'analysis',
               data: [
-                { name: 'sdsd', amount: '3223' },
-                { name: 'sdsd', amount: '3223' },
-                { name: 'sdsd', amount: '3223' },
-                { name: 'sdsd', amount: '3223' }
+                { name: 'wbc', amount: '3223' },
+                { name: 'rbc', amount: '3223' },
+                { name: 'pressure', amount: '3223' },
+                { name: 'temprature', amount: '3223' }
               ]
             },
             {
               tableHeader: 'species',
               data: [
-                { name: 'sdsd', amount: '3223' },
-                { name: 'sdsd', amount: '3223' },
-                { name: 'sdsd', amount: '3223' },
-                { name: 'sdsd', amount: '3223' }
+                { name: 'wbc', amount: '3223' },
+                { name: 'rbc', amount: '3223' },
+                { name: 'pressure', amount: '3223' },
+                { name: 'temprature', amount: '3223' }
               ]
             }
           ]
         },
         {
-          date: '01 Jun 2018',
+          date: '01 Jun 2020',
           reportHeading: 'Blood checkup test',
           bloodReport: false,
           admitReport: false,
           checkupReport: true,
           surgeryReport: false,
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+          description: 'increaed wbc cells numerology attack count inreases',
           reportTable: [],
           images: []
         },
@@ -70,8 +70,7 @@ const ViewPatients = () => {
             'https://media.istockphoto.com/photos/offering-patientcentred-care-that-proves-effective-and-efficient-picture-id1301555107?k=20&m=1301555107&s=612x612&w=0&h=Cnj-PabtvN4J6xBVonpez02ub100LmbKDlNPLjy_w9Y=',
             'https://media.istockphoto.com/photos/diagnostic-tools-get-a-digital-upgrade-picture-id1300505874?k=20&m=1300505874&s=612x612&w=0&h=Ev_S8Ag5Pf8LiHL-dW-N8PxgftQ4D8KK-5snYu-Bhn0='
           ],
-          description:
-            "web by far While that's mock-ups and this is politics, are they really so different? I think the only card she has is the Lorem card",
+          description: 'surgery handles attack affection svere tumor issues',
           reportTable: []
         }
       ]
@@ -85,7 +84,12 @@ const ViewPatients = () => {
           <Paper className="view--paper" elevation={1}>
             <div className="profile--card d-flex flex-grow-1  h-100 w-100">
               <Card className="w-100">
-                <CardMedia component="img" height="50%" image="" alt="green iguana" />
+                <CardMedia
+                  component="img"
+                  height="50%"
+                  image={location.state.patientImage}
+                  alt="green iguana"
+                />
                 <CardContent className="d-flex flex-grow-1 flex-column p-2">
                   <div>
                     <Box className="p-1 card--header">

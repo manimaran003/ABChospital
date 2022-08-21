@@ -20,6 +20,7 @@ export const PostDoctorInfo = (data: DoctorInfo) => {
         url: Constants.BaseUrl + ApiEndpoint.PostDoctorInfo,
         data
       }).then((res) => {
+        toast.success('successfult docter added');
         return res.data;
       });
       if (PostDoctorResponse) {

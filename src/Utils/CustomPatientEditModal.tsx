@@ -6,7 +6,7 @@ import FormikControl from '../CustomComponent/FormikControl';
 import { UpdatePatientInfo } from '../Redux/PatientSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../store';
-import { UserContextType, PatientModel } from '../TypeFile/TypeScriptType';
+import { UserContextType } from '../TypeFile/TypeScriptType';
 import { userContext } from '../Context/userContext';
 import moment from 'moment';
 import { IoIosClose } from 'react-icons/io';
@@ -15,6 +15,16 @@ interface CountryOption {
   id: string;
   key: string;
   data: string;
+}
+interface PatientInfo {
+  patientName: string;
+  email: string;
+  address: string;
+  phoneNumber: string;
+  country: string;
+  dob: string;
+  ageField: number;
+  admitDate: string;
 }
 
 const signinSchema = Yup.object().shape({
@@ -39,8 +49,8 @@ const CustomPatientEditModal: React.FC<{ id: string }> = ({ id }) => {
   const [checkError, setCheckError] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
 
-  const InnerForm = (props: FormikProps<PatientModel>) => {
-    const { values, touched, errors, handleBlur, handleChange, setFieldValue } = props;
+  const InnerForm = (props: FormikProps<PatientInfo>) => {
+    const { values, touched, errors, handleBlur, handleChange } = props;
     return (
       <div className="modal-body p-3">
         <Form>
@@ -186,11 +196,10 @@ const CustomPatientEditModal: React.FC<{ id: string }> = ({ id }) => {
         country: EditedData?.country,
         dob: convertToDate(EditedData?.dob),
         ageField: EditedData?.ageField,
-        admitDate: convertToDate(EditedData?.admitDate),
-        patientImage: ''
+        admitDate: convertToDate(EditedData?.admitDate)
       };
     },
-    handleSubmit: (values: PatientModel) => {
+    handleSubmit: (values: PatientInfo) => {
       setCheckError(!checkError);
       dispatch(UpdatePatientInfo(EditedData?._id, values));
     },
