@@ -84,10 +84,10 @@ const ViewPatients = () => {
         <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
           <div>
             <Demo
-              patientName="mani"
-              patientImage="https://t3.ftcdn.net/jpg/02/95/51/80/360_F_295518052_aO5d9CqRhPnjlNDTRDjKLZHNftqfsxzI.jpg"
-              email="cmmaran"
-              address="rod"
+              patientName={location?.state?.patientName}
+              patientImage={location?.state?.patientImage}
+              email={location?.state?.email}
+              address={location?.state?.address}
             />
           </div>
         </div>
