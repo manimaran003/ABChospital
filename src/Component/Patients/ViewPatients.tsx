@@ -82,35 +82,6 @@ const ViewPatients = () => {
     <div className="p-3">
       <div className="row">
         <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-          <Paper className="view--paper" elevation={1}>
-            <div className="profile--card d-flex flex-grow-1  h-100 w-100">
-              <Card className="w-100">
-                <CardMedia
-                  component="img"
-                  height="50%"
-                  image={location.state.patientImage}
-                  alt="green iguana"
-                />
-                <CardContent className="d-flex flex-grow-1 flex-column p-2">
-                  <div>
-                    <Box className="p-1 card--header">
-                      <h6>Patient Name</h6>
-                      <p className="text--para">{location?.state?.patientName}</p>
-                    </Box>
-                    <div className="p-1 card--header">
-                      <h6>Email Id</h6>
-                      <p className="text--para">{location?.state?.email}</p>
-                    </div>
-                    <Divider />
-                    <div className="p-2 card--header">
-                      <h6>Address</h6>
-                      <p className="text--para">{location?.state?.address}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </Paper>
           <div>
             <Demo
               patientName="mani"
