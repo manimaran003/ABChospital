@@ -23,7 +23,7 @@
     "apexcharts": "^3.35.3",
     "axios": "^0.27.2",
     "formik": "^2.2.9",
-    "manimaran001": "^0.9.0",
+    "manimaran001": "^0.10.0",
     "moment": "^2.29.4",
     "msw": "^0.44.2",
     "prop-types": "^15.8.1",

@@ -4,6 +4,7 @@ import { Tabs } from 'antd';
 import './ViewPatients.scss';
 import HospitalActivity from '../MainDashboard/HospitalActivity';
 import { Setup } from '../../TypeFile/TypeScriptType';
+import { Demo } from 'manimaran001';
 
 const ViewPatients = () => {
   const { TabPane } = Tabs;
@@ -110,7 +111,14 @@ const ViewPatients = () => {
               </Card>
             </div>
           </Paper>
-          <div></div>
+          <div>
+            <Demo
+              patientName="mani"
+              patientImage="https://t3.ftcdn.net/jpg/02/95/51/80/360_F_295518052_aO5d9CqRhPnjlNDTRDjKLZHNftqfsxzI.jpg"
+              email="cmmaran"
+              address="rod"
+            />
+          </div>
         </div>
         <div className="col-sm-12 col-md-12 col-lg-8 col-xl-8">
           <Paper>
