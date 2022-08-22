@@ -18,6 +18,7 @@ import { AppDispatch, RootState } from '../../store';
 import PaginationHook from '../../Utils/PaginationHook';
 import { Dots } from 'react-activity';
 import 'react-activity/dist/library.css';
+import { Demo } from 'manimaran001';
 
 interface DataTypes {
   patientName: string;
@@ -288,6 +289,9 @@ const MainDashboard = () => {
               </>
             )}
           </Paper>
+        </div>
+        <div>
+          <Demo MyData={'manimaran'} />
         </div>
       </div>
     </div>
