@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { Paper, Card, CardMedia, CardContent, Divider, Box } from '@mui/material';
+import { Paper } from '@mui/material';
 import { Tabs } from 'antd';
 import './ViewPatients.scss';
 import HospitalActivity from '../MainDashboard/HospitalActivity';
